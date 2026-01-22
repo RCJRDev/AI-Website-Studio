@@ -89,7 +89,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-20">
           <Link
             href="/"
-            className="flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-electric-500 focus:ring-offset-2 rounded-lg"
+            className="flex-shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-500/50 focus-visible:ring-offset-2 rounded-lg"
             aria-label="Buildwise - Home"
           >
             <Logo />
@@ -102,11 +102,11 @@ export default function Header() {
                 key={item.name}
                 href={item.href}
                 className={clsx(
-                  'text-sm font-medium transition-colors duration-200 py-2 px-1',
-                  'focus:outline-none focus:ring-2 focus:ring-electric-500 focus:ring-offset-2 rounded',
+                  'text-sm font-medium transition-all duration-200 py-2 px-3 rounded-md relative',
+                  'focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-500/50',
                   pathname === item.href
-                    ? 'text-electric-500'
-                    : 'text-navy-900 hover:text-electric-500'
+                    ? 'text-electric-500 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-electric-500'
+                    : 'text-navy-900 hover:text-electric-500 hover:bg-electric-50'
                 )}
                 aria-current={pathname === item.href ? 'page' : undefined}
               >
@@ -119,7 +119,7 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-4">
             <Link
               href="/contact"
-              className="btn-primary"
+              className="btn-primary focus-visible:ring-2 focus-visible:ring-electric-500 focus-visible:ring-offset-2"
             >
               Book a Call
             </Link>
@@ -130,7 +130,7 @@ export default function Header() {
             type="button"
             className={clsx(
               'lg:hidden p-2 rounded-lg transition-colors',
-              'focus:outline-none focus:ring-2 focus:ring-electric-500 focus:ring-offset-2',
+              'focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-500/50',
               isScrolled ? 'text-navy-900' : 'text-navy-900'
             )}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -199,7 +199,7 @@ export default function Header() {
                     href={item.href}
                     className={clsx(
                       'block px-4 py-3 text-base font-medium rounded-lg transition-colors',
-                      'focus:outline-none focus:ring-2 focus:ring-inset focus:ring-electric-500',
+                      'focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-electric-500/50',
                       pathname === item.href
                         ? 'bg-electric-50 text-electric-500'
                         : 'text-navy-900 hover:bg-slate-50'
@@ -213,7 +213,7 @@ export default function Header() {
                 <div className="pt-4 px-4">
                   <Link
                     href="/contact"
-                    className="btn-primary w-full text-center"
+                    className="btn-primary w-full text-center focus-visible:ring-2 focus-visible:ring-electric-500 focus-visible:ring-offset-2"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Book a Call
