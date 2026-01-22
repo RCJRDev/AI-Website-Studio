@@ -200,7 +200,7 @@ export default function TermsPage() {
               </p>
               <ul>
                 <li>Email: <a href="mailto:legal@buildwise.dev">legal@buildwise.dev</a></li>
-                <li>Phone: (555) 123-4567</li>
+                <li>Phone: (516) 847-2902</li>
               </ul>
             </div>
           </AnimatedElement>
