@@ -173,7 +173,7 @@ export default function ContactForm() {
       setTouched({})
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Something went wrong'
-      setSubmitError(errorMessage + ' Please try again or email us directly at hello@buildwise.dev')
+      setSubmitError(errorMessage + ' Please try again or email us directly at buildwisedev@gmail.com')
     } finally {
       setIsSubmitting(false)
     }

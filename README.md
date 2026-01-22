@@ -2,7 +2,7 @@
 
 **Modern agency website built with Next.js 14, TypeScript, and Tailwind CSS**
 
-Contact: (516) 847-2902 | hello@buildwise.dev
+Contact: (516) 847-2902 | buildwisedev@gmail.com
 
 ---
 
@@ -42,7 +42,7 @@ Create `.env.local` for development:
 ```env
 # Required
 RESEND_API_KEY=re_your_api_key_here
-CONTACT_EMAIL_TO=hello@buildwise.dev
+CONTACT_EMAIL_TO=buildwisedev@gmail.com
 
 # Optional
 CONTACT_EMAIL_FROM=Buildwise Contact <onboarding@resend.dev>
@@ -171,7 +171,7 @@ colors: {
 ### Update Business Info
 
 - **Phone**: Search for `(516) 847-2902` and replace
-- **Email**: Search for `hello@buildwise.dev` and replace
+- **Email**: Search for `buildwisedev@gmail.com` and replace
 - **Company Name**: Search for `Buildwise` and replace
 
 ### Add Portfolio Projects
@@ -261,4 +261,4 @@ Edit `src/app/(marketing)/pricing/page.tsx` → Update `buildPackages` and `mont
 For questions or issues:
 - Review this README
 - Check the official documentation links above
-- Contact: hello@buildwise.dev | (516) 847-2902
+- Contact: buildwisedev@gmail.com | (516) 847-2902

@@ -228,7 +228,7 @@ export async function POST(request: NextRequest) {
     const client = getResendClient()
     const emailResult = await client.emails.send({
       from: process.env.CONTACT_EMAIL_FROM || 'Buildwise Contact <onboarding@resend.dev>',
-      to: process.env.CONTACT_EMAIL_TO || 'hello@buildwise.dev',
+      to: process.env.CONTACT_EMAIL_TO || 'buildwisedev@gmail.com',
       replyTo: sanitizedData.email,
       subject: `New Contact: ${sanitizedData.name} - ${sanitizedData.projectType}`,
       html: generateEmailHTML(sanitizedData),
@@ -254,7 +254,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error:
-          'An error occurred. Please try again or email us directly at hello@buildwise.dev',
+          'An error occurred. Please try again or email us directly at buildwisedev@gmail.com',
       },
       { status: 500 }
     )

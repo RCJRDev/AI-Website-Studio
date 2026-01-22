@@ -17,7 +17,7 @@ export function OrganizationSchema(_props: SchemaProps) {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer service',
-      email: 'hello@buildwise.dev',
+      email: 'buildwisedev@gmail.com',
       areaServed: 'US',
       availableLanguage: 'English',
     },
@@ -41,7 +41,7 @@ export function ProfessionalServiceSchema(_props: SchemaProps) {
     logo: `${baseUrl}/logonew.svg`,
     image: `${baseUrl}/og-image.png`,
     description: 'Professional website design and development services for small businesses. Custom-built websites with ongoing support.',
-    email: 'hello@buildwise.dev',
+    email: 'buildwisedev@gmail.com',
     priceRange: '$$',
     areaServed: {
       '@type': 'Country',
