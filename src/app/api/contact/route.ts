@@ -1,8 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-// Initialize Resend with API key
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Initialize Resend with API key (lazy initialization to avoid build errors)
+let resend: Resend | null = null
+
+function getResendClient(): Resend {
+  if (!resend) {
+    const apiKey = process.env.RESEND_API_KEY
+    if (!apiKey) {
+      throw new Error('RESEND_API_KEY is not configured')
+    }
+    resend = new Resend(apiKey)
+  }
+  return resend
+}
 
 // Simple in-memory rate limiting (use Redis in production for scale)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>()
@@ -214,7 +225,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Send email via Resend
-    const emailResult = await resend.emails.send({
+    const client = getResendClient()
+    const emailResult = await client.emails.send({
       from: process.env.CONTACT_EMAIL_FROM || 'Buildwise Contact <onboarding@resend.dev>',
       to: process.env.CONTACT_EMAIL_TO || 'hello@buildwise.dev',
       replyTo: sanitizedData.email,
