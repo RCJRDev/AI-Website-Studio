@@ -2,13 +2,16 @@ interface SchemaProps {
   children?: never
 }
 
+const getBaseUrl = () => process.env.NEXT_PUBLIC_SITE_URL || 'https://buildwise.dev'
+
 export function OrganizationSchema(_props: SchemaProps) {
+  const baseUrl = getBaseUrl()
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Buildwise',
-    url: 'https://buildwise.dev',
-    logo: 'https://buildwise.dev/icon.svg',
+    url: baseUrl,
+    logo: `${baseUrl}/logonew.svg`,
     description: 'Custom websites for small businesses with ongoing expert support.',
     foundingDate: '2024',
     contactPoint: {
@@ -18,10 +21,6 @@ export function OrganizationSchema(_props: SchemaProps) {
       areaServed: 'US',
       availableLanguage: 'English',
     },
-    sameAs: [
-      'https://twitter.com/buildwise',
-      'https://linkedin.com/company/buildwise',
-    ],
   }
 
   return (
@@ -33,13 +32,14 @@ export function OrganizationSchema(_props: SchemaProps) {
 }
 
 export function ProfessionalServiceSchema(_props: SchemaProps) {
+  const baseUrl = getBaseUrl()
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
     name: 'Buildwise',
-    url: 'https://buildwise.dev',
-    logo: 'https://buildwise.dev/icon.svg',
-    image: 'https://buildwise.dev/og-image.png',
+    url: baseUrl,
+    logo: `${baseUrl}/logonew.svg`,
+    image: `${baseUrl}/og-image.png`,
     description: 'Professional website design and development services for small businesses. Custom-built websites with ongoing support.',
     email: 'hello@buildwise.dev',
     priceRange: '$$',
@@ -95,6 +95,7 @@ export function ProfessionalServiceSchema(_props: SchemaProps) {
 }
 
 export function ServiceSchema(_props: SchemaProps) {
+  const baseUrl = getBaseUrl()
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -102,7 +103,7 @@ export function ServiceSchema(_props: SchemaProps) {
     provider: {
       '@type': 'Organization',
       name: 'Buildwise',
-      url: 'https://buildwise.dev',
+      url: baseUrl,
     },
     areaServed: {
       '@type': 'Country',
@@ -161,6 +162,7 @@ interface WebPageSchemaProps {
 }
 
 export function WebPageSchema({ title, description, url }: WebPageSchemaProps) {
+  const baseUrl = getBaseUrl()
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
@@ -170,7 +172,7 @@ export function WebPageSchema({ title, description, url }: WebPageSchemaProps) {
     isPartOf: {
       '@type': 'WebSite',
       name: 'Buildwise',
-      url: 'https://buildwise.dev',
+      url: baseUrl,
     },
   }
 
@@ -243,20 +245,13 @@ export function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
 }
 
 export function WebsiteSchema(_props: SchemaProps) {
+  const baseUrl = getBaseUrl()
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Buildwise',
-    url: 'https://buildwise.dev',
+    url: baseUrl,
     description: 'Custom websites for small businesses with ongoing expert support.',
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: 'https://buildwise.dev/search?q={search_term_string}',
-      },
-      'query-input': 'required name=search_term_string',
-    },
   }
 
   return (

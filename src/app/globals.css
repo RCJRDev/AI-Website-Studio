@@ -3,12 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
-    @apply bg-white text-navy-900 antialiased;
+    @apply bg-slate-300 text-navy-900 antialiased;
   }
 
   ::selection {

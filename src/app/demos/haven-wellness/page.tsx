@@ -3,6 +3,8 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import DemoHeader from '@/components/demos/DemoHeader'
+import DemoFooter from '@/components/demos/DemoFooter'
 
 const featuredServices = [
   {
@@ -66,79 +68,34 @@ const membershipTiers = [
   },
 ]
 
+const spaIcon = (
+  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-emerald-500 flex items-center justify-center hover:scale-105 transition-transform">
+    <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+    </svg>
+  </div>
+)
+
 export default function HavenWellnessHome() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [selectedTier, setSelectedTier] = useState('Luxe')
 
   return (
     <div className="min-h-screen bg-stone-50">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-stone-200/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <Link href="/demos/haven-wellness" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-emerald-500 flex items-center justify-center group-hover:scale-105 transition-transform">
-                <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
-                </svg>
-              </div>
-              <span className="text-xl font-light tracking-wide text-stone-800">Haven Wellness</span>
-            </Link>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
-              <Link href="/demos/haven-wellness" className="text-teal-600 font-medium">Home</Link>
-              <Link href="/demos/haven-wellness/services" className="text-stone-600 hover:text-teal-600 transition-colors">Services</Link>
-              <a href="#membership" className="text-stone-600 hover:text-teal-600 transition-colors">Membership</a>
-              <a href="#gift-cards" className="text-stone-600 hover:text-teal-600 transition-colors">Gift Cards</a>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <Link
-                href="/demos/haven-wellness/services"
-                className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 bg-teal-600 text-white rounded-full hover:bg-teal-500 transition-colors font-medium"
-              >
-                Book Now
-              </Link>
-
-              {/* Mobile menu button */}
-              <button
-                type="button"
-                className="md:hidden p-2 text-stone-600 hover:text-stone-900"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-expanded={mobileMenuOpen}
-                aria-label="Toggle navigation menu"
-              >
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  {mobileMenuOpen ? (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  ) : (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                  )}
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Navigation */}
-          {mobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-stone-200">
-              <div className="flex flex-col gap-4">
-                <Link href="/demos/haven-wellness" className="text-teal-600 font-medium">Home</Link>
-                <Link href="/demos/haven-wellness/services" className="text-stone-600 hover:text-teal-600 transition-colors">Services</Link>
-                <a href="#membership" className="text-stone-600 hover:text-teal-600 transition-colors" onClick={() => setMobileMenuOpen(false)}>Membership</a>
-                <a href="#gift-cards" className="text-stone-600 hover:text-teal-600 transition-colors" onClick={() => setMobileMenuOpen(false)}>Gift Cards</a>
-                <Link
-                  href="/demos/haven-wellness/services"
-                  className="inline-flex items-center justify-center px-5 py-2.5 bg-teal-600 text-white rounded-full hover:bg-teal-500 transition-colors font-medium mt-2"
-                >
-                  Book Now
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
+      <DemoHeader
+        brandName="Haven Wellness"
+        icon={spaIcon}
+        baseHref="/demos/haven-wellness"
+        navLinks={[
+          { label: 'Home', href: '/demos/haven-wellness' },
+          { label: 'Services', href: '/demos/haven-wellness/services' },
+          { label: 'Membership', href: '#membership' },
+          { label: 'Gift Cards', href: '#gift-cards' },
+        ]}
+        ctaText="Book Now"
+        ctaHref="/demos/haven-wellness/services"
+        colorScheme="light"
+        accentColor="text-teal-600"
+      />
 
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-stone-100 via-teal-50 to-emerald-50 overflow-hidden">
@@ -383,65 +340,37 @@ export default function HavenWellnessHome() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-stone-900 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-emerald-500 flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
-                  </svg>
-                </div>
-                <span className="text-lg font-light tracking-wide">Haven Wellness</span>
-              </div>
-              <p className="text-stone-400 text-sm leading-relaxed">
-                Your sanctuary for rest, renewal, and transformation.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-medium mb-4">Services</h3>
-              <ul className="space-y-3 text-stone-400 text-sm">
-                <li><Link href="/demos/haven-wellness/services" className="hover:text-white transition-colors">Massage Therapy</Link></li>
-                <li><Link href="/demos/haven-wellness/services" className="hover:text-white transition-colors">Facials & Skincare</Link></li>
-                <li><Link href="/demos/haven-wellness/services" className="hover:text-white transition-colors">Body Treatments</Link></li>
-                <li><Link href="/demos/haven-wellness/services" className="hover:text-white transition-colors">Packages</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-medium mb-4">Information</h3>
-              <ul className="space-y-3 text-stone-400 text-sm">
-                <li><span className="hover:text-white transition-colors cursor-pointer">About Us</span></li>
-                <li><a href="#membership" className="hover:text-white transition-colors">Membership</a></li>
-                <li><a href="#gift-cards" className="hover:text-white transition-colors">Gift Cards</a></li>
-                <li><span className="hover:text-white transition-colors cursor-pointer">Careers</span></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-medium mb-4">Contact</h3>
-              <address className="space-y-3 text-stone-400 text-sm not-italic">
-                <p>hello@havenwellness.demo</p>
-                <p>(555) 234-5678</p>
-                <p className="pt-1">
-                  123 Serenity Lane<br />
-                  Wellness City, WC 12345
-                </p>
-              </address>
-            </div>
-          </div>
-          <div className="mt-12 pt-8 border-t border-stone-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-stone-500 text-sm">
-              © {new Date().getFullYear()} Haven Wellness Spa. All rights reserved.
-            </p>
-            <div className="flex items-center gap-6 text-stone-400 text-sm">
-              <span className="hover:text-white transition-colors cursor-pointer">Privacy Policy</span>
-              <span className="hover:text-white transition-colors cursor-pointer">Terms of Service</span>
-              <span className="hover:text-white transition-colors cursor-pointer">Accessibility</span>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <DemoFooter
+        brandName="Haven Wellness"
+        icon={spaIcon}
+        description="Your sanctuary for rest, renewal, and transformation."
+        sections={[
+          {
+            title: 'Services',
+            links: [
+              { label: 'Massage Therapy', href: '/demos/haven-wellness/services' },
+              { label: 'Facials & Skincare', href: '/demos/haven-wellness/services' },
+              { label: 'Body Treatments', href: '/demos/haven-wellness/services' },
+              { label: 'Packages', href: '/demos/haven-wellness/services' },
+            ],
+          },
+          {
+            title: 'Information',
+            links: [
+              { label: 'About Us' },
+              { label: 'Membership', href: '#membership' },
+              { label: 'Gift Cards', href: '#gift-cards' },
+              { label: 'Careers' },
+            ],
+          },
+        ]}
+        contactInfo={{
+          email: 'hello@havenwellness.demo',
+          phone: '(555) 234-5678',
+          address: ['123 Serenity Lane', 'Wellness City, WC 12345'],
+        }}
+        colorScheme="dark"
+      />
     </div>
   )
 }

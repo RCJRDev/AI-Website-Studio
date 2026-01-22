@@ -6,6 +6,3 @@ Allow: /
 
 # Sitemap location
 Sitemap: https://buildwise.dev/sitemap.xml
-
-# Crawl-delay for responsible crawling
-Crawl-delay: 1

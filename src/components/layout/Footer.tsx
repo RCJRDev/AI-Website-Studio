@@ -26,7 +26,7 @@ export default function Footer() {
       <div className="container-wide section-padding">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
           <div className="lg:col-span-2">
-            <Logo variant="light" />
+            <Logo />
             <p className="mt-4 text-slate-400 max-w-md">
               Custom-built websites with ongoing expert support. We handle the technical details so you can focus on growing your business.
             </p>

@@ -154,15 +154,26 @@ export default function ContactForm() {
     setIsSubmitting(true)
 
     try {
-      // Production: Replace with actual API endpoint
-      // Example: await fetch('/api/contact', { method: 'POST', body: JSON.stringify(formData) })
-      await new Promise(resolve => setTimeout(resolve, 800))
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Something went wrong')
+      }
 
       setIsSubmitted(true)
       setFormData(initialFormData)
       setTouched({})
-    } catch {
-      setSubmitError('Something went wrong. Please try again or email us directly at hello@buildwise.dev')
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Something went wrong'
+      setSubmitError(errorMessage + ' Please try again or email us directly at hello@buildwise.dev')
     } finally {
       setIsSubmitting(false)
     }

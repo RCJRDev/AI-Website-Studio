@@ -80,7 +80,7 @@ export default function Header() {
       className={clsx(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-sm'
+          ? 'bg-slate-300/95 backdrop-blur-md shadow-sm'
           : 'bg-transparent'
       )}
       onKeyDown={handleKeyDown}
@@ -187,7 +187,7 @@ export default function Header() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
-              className="lg:hidden absolute top-full left-0 right-0 bg-white border-t border-slate-100 shadow-lg z-50"
+              className="lg:hidden absolute top-full left-0 right-0 bg-slate-200 border-t border-slate-400 shadow-lg z-50"
               role="dialog"
               aria-modal="true"
               aria-label="Mobile navigation menu"

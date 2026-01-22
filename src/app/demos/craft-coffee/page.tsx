@@ -3,6 +3,8 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import DemoHeader from '@/components/demos/DemoHeader'
+import DemoFooter from '@/components/demos/DemoFooter'
 
 const featuredCoffees = [
   {
@@ -37,79 +39,34 @@ const subscriptionPlans = [
   { frequency: 'Monthly', discount: '5% off', popular: false },
 ]
 
+const coffeeIcon = (
+  <div className="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center hover:bg-amber-500 transition-colors">
+    <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375" />
+    </svg>
+  </div>
+)
+
 export default function CraftCoffeeHome() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [selectedPlan, setSelectedPlan] = useState('Bi-weekly')
 
   return (
     <div className="min-h-screen bg-stone-50">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-40 bg-stone-900/95 backdrop-blur-sm text-white border-b border-stone-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <Link href="/demos/craft-coffee" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center group-hover:bg-amber-500 transition-colors">
-                <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375" />
-                </svg>
-              </div>
-              <span className="text-xl font-bold tracking-tight">Craft Coffee Roasters</span>
-            </Link>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
-              <Link href="/demos/craft-coffee" className="text-amber-400 font-medium">Home</Link>
-              <Link href="/demos/craft-coffee/shop" className="text-stone-300 hover:text-white transition-colors">Shop</Link>
-              <a href="#subscribe" className="text-stone-300 hover:text-white transition-colors">Subscribe</a>
-              <a href="#about" className="text-stone-300 hover:text-white transition-colors">Our Story</a>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <Link
-                href="/demos/craft-coffee/shop"
-                className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 bg-amber-600 text-white rounded-lg hover:bg-amber-500 transition-colors font-medium"
-              >
-                Shop Now
-              </Link>
-
-              {/* Mobile menu button */}
-              <button
-                type="button"
-                className="md:hidden p-2 text-stone-300 hover:text-white"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-expanded={mobileMenuOpen}
-                aria-label="Toggle navigation menu"
-              >
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  {mobileMenuOpen ? (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  ) : (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                  )}
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Navigation */}
-          {mobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-stone-800">
-              <div className="flex flex-col gap-4">
-                <Link href="/demos/craft-coffee" className="text-amber-400 font-medium">Home</Link>
-                <Link href="/demos/craft-coffee/shop" className="text-stone-300 hover:text-white transition-colors">Shop</Link>
-                <a href="#subscribe" className="text-stone-300 hover:text-white transition-colors" onClick={() => setMobileMenuOpen(false)}>Subscribe</a>
-                <a href="#about" className="text-stone-300 hover:text-white transition-colors" onClick={() => setMobileMenuOpen(false)}>Our Story</a>
-                <Link
-                  href="/demos/craft-coffee/shop"
-                  className="inline-flex items-center justify-center px-5 py-2.5 bg-amber-600 text-white rounded-lg hover:bg-amber-500 transition-colors font-medium mt-2"
-                >
-                  Shop Now
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
+      <DemoHeader
+        brandName="Craft Coffee Roasters"
+        icon={coffeeIcon}
+        baseHref="/demos/craft-coffee"
+        navLinks={[
+          { label: 'Home', href: '/demos/craft-coffee' },
+          { label: 'Shop', href: '/demos/craft-coffee/shop' },
+          { label: 'Subscribe', href: '#subscribe' },
+          { label: 'Our Story', href: '#about' },
+        ]}
+        ctaText="Shop Now"
+        ctaHref="/demos/craft-coffee/shop"
+        colorScheme="dark"
+        accentColor="text-amber-400"
+      />
 
       {/* Hero Section */}
       <section className="relative bg-stone-900 text-white overflow-hidden">
@@ -375,63 +332,36 @@ export default function CraftCoffeeHome() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-stone-900 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375" />
-                  </svg>
-                </div>
-                <span className="text-lg font-bold">Craft Coffee</span>
-              </div>
-              <p className="text-stone-400 text-sm leading-relaxed">
-                Small-batch roasted in Portland, Oregon. Delivering exceptional coffee since 2015.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Shop</h3>
-              <ul className="space-y-3 text-stone-400 text-sm">
-                <li><Link href="/demos/craft-coffee/shop" className="hover:text-white transition-colors">All Coffees</Link></li>
-                <li><a href="#subscribe" className="hover:text-white transition-colors">Subscriptions</a></li>
-                <li><span className="hover:text-white transition-colors cursor-pointer">Gift Cards</span></li>
-                <li><span className="hover:text-white transition-colors cursor-pointer">Brewing Equipment</span></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Learn</h3>
-              <ul className="space-y-3 text-stone-400 text-sm">
-                <li><span className="hover:text-white transition-colors cursor-pointer">Brewing Guides</span></li>
-                <li><span className="hover:text-white transition-colors cursor-pointer">Coffee Origins</span></li>
-                <li><span className="hover:text-white transition-colors cursor-pointer">Our Roasting Process</span></li>
-                <li><span className="hover:text-white transition-colors cursor-pointer">Sustainability</span></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Contact</h3>
-              <address className="space-y-3 text-stone-400 text-sm not-italic">
-                <p>hello@craftcoffee.demo</p>
-                <p>Portland, OR</p>
-                <p className="pt-1">
-                  <span className="hover:text-white transition-colors cursor-pointer">Visit Our Roastery</span>
-                </p>
-              </address>
-            </div>
-          </div>
-          <div className="mt-12 pt-8 border-t border-stone-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-stone-500 text-sm">
-              © {new Date().getFullYear()} Craft Coffee Roasters. All rights reserved.
-            </p>
-            <div className="flex items-center gap-6 text-stone-400 text-sm">
-              <span className="hover:text-white transition-colors cursor-pointer">Privacy Policy</span>
-              <span className="hover:text-white transition-colors cursor-pointer">Terms of Service</span>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <DemoFooter
+        brandName="Craft Coffee"
+        icon={coffeeIcon}
+        description="Small-batch roasted in Portland, Oregon. Delivering exceptional coffee since 2015."
+        sections={[
+          {
+            title: 'Shop',
+            links: [
+              { label: 'All Coffees', href: '/demos/craft-coffee/shop' },
+              { label: 'Subscriptions', href: '#subscribe' },
+              { label: 'Gift Cards' },
+              { label: 'Brewing Equipment' },
+            ],
+          },
+          {
+            title: 'Learn',
+            links: [
+              { label: 'Brewing Guides' },
+              { label: 'Coffee Origins' },
+              { label: 'Our Roasting Process' },
+              { label: 'Sustainability' },
+            ],
+          },
+        ]}
+        contactInfo={{
+          email: 'hello@craftcoffee.demo',
+          address: ['Portland, OR'],
+        }}
+        colorScheme="dark"
+      />
     </div>
   )
 }

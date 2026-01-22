@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     'website maintenance',
     'web design services',
   ],
-  authors: [{ name: 'Buildwise', url: 'https://buildwise.dev' }],
+  authors: [{ name: 'Buildwise' }],
   creator: 'Buildwise',
   publisher: 'Buildwise',
   formatDetection: {
@@ -45,7 +45,6 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://buildwise.dev',
     siteName: 'Buildwise',
     title: 'Buildwise | Custom Websites for Small Businesses',
     description:
@@ -79,7 +78,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://buildwise.dev',
+    canonical: '/',
   },
   category: 'technology',
 }
@@ -93,11 +92,10 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="32x32" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+        <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="font-sans antialiased">
         {children}
