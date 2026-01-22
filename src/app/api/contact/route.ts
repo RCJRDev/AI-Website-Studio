@@ -236,6 +236,8 @@ export async function POST(request: NextRequest) {
 
     // Check if email was sent successfully
     if (emailResult.error) {
+      // Log error details for debugging (only visible in Vercel logs, not to user)
+      console.error('Resend error:', emailResult.error)
       return NextResponse.json(
         { error: 'Failed to send email. Please try again or contact us directly.' },
         { status: 500 }
