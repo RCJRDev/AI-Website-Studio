@@ -35,7 +35,7 @@ const faqs = [
   {
     question: 'Can you help with content and copywriting?',
     answer:
-      'Yes. We can provide guidance on content structure and best practices. For clients who need hands-on help, we offer copywriting services as an add-on. Great design deserves great words.',
+      'We provide guidance on content structure and best practices. We also share templates to help you write effective copy for each page. Great design deserves great words.',
   },
 ] as const
 

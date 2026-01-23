@@ -88,9 +88,8 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-6 text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto text-balance"
           >
-            Custom-designed websites starting at $2,499. Includes ongoing support,
-            security updates, and technical maintenance for just $49/month.
-            No long-term contracts required.
+            Custom websites: Starter $500, Growth $1,000, Pro $2,000.
+            Hosting, security, and support included for $19/month.
           </motion.p>
 
           {/* CTA Buttons */}

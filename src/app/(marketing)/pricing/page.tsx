@@ -6,10 +6,10 @@ import AnimatedElement from '@/components/ui/AnimatedElement'
 
 export const metadata: Metadata = {
   title: 'Pricing',
-  description: 'Transparent pricing for custom website design and monthly support plans. Website builds from $750, monthly support from $49/month.',
+  description: 'Simple, transparent pricing for custom website design. Starter $500, Growth $1,000, Pro $2,000. One price per tier, no surprises.',
   openGraph: {
     title: 'Pricing | Buildwise',
-    description: 'Transparent pricing for custom website design and monthly support plans.',
+    description: 'Simple, transparent pricing for custom website design. One price per tier, no surprises.',
   },
 }
 
@@ -17,8 +17,8 @@ const buildPackages = [
   {
     id: 'starter',
     name: 'Starter',
-    price: '$750 – $1,000',
-    description: 'Perfect for new businesses, freelancers, and simple online presence needs.',
+    price: '$500',
+    description: 'A polished, professional website that gets your business online and working for you.',
     bestFor: 'Freelancers, solo professionals, new businesses',
     includes: [
       'Up to 5 pages',
@@ -34,8 +34,8 @@ const buildPackages = [
   {
     id: 'growth',
     name: 'Growth',
-    price: '$1,500 – $2,500',
-    description: 'For established businesses ready to expand their online reach and generate more leads.',
+    price: '$1,000',
+    description: 'Built to attract visitors, capture leads, and grow your customer base.',
     bestFor: 'Growing businesses, local services, consultants',
     includes: [
       'Up to 10 pages',
@@ -54,8 +54,8 @@ const buildPackages = [
   {
     id: 'pro',
     name: 'Pro',
-    price: '$3,000 – $5,000',
-    description: 'Full-featured websites for businesses with complex needs and high growth ambitions.',
+    price: '$2,000',
+    description: 'A complete digital platform with advanced features to scale your business.',
     bestFor: 'Established businesses, e-commerce, service companies',
     includes: [
       'Unlimited pages',
@@ -77,8 +77,8 @@ const monthlyPlans = [
   {
     id: 'basic',
     name: 'Basic',
-    price: '$49 – $79',
-    description: 'Essential maintenance for simple websites.',
+    price: '$19',
+    description: 'Reliable hosting and essential maintenance to keep your site running smoothly.',
     bestFor: 'Starter package clients, low-traffic sites',
     includes: [
       'Managed hosting',
@@ -93,8 +93,8 @@ const monthlyPlans = [
   {
     id: 'standard',
     name: 'Standard',
-    price: '$99 – $149',
-    description: 'Comprehensive care for growing businesses.',
+    price: '$49',
+    description: 'Proactive care and faster support for businesses that depend on their website.',
     bestFor: 'Growth package clients, active websites',
     includes: [
       'Everything in Basic, plus:',
@@ -110,8 +110,8 @@ const monthlyPlans = [
   {
     id: 'premium',
     name: 'Premium',
-    price: '$249 – $399',
-    description: 'White-glove service for mission-critical websites.',
+    price: '$99',
+    description: 'Dedicated attention for high-traffic sites and e-commerce stores.',
     bestFor: 'Pro package clients, e-commerce, high-traffic',
     includes: [
       'Everything in Standard, plus:',
@@ -136,12 +136,12 @@ export default function PricingPage() {
           <div className="max-w-3xl mx-auto text-center">
             <AnimatedElement>
               <h1 className="heading-1 text-white">
-                Transparent pricing, real value
+                One price. No surprises.
               </h1>
             </AnimatedElement>
             <AnimatedElement delay={0.1}>
               <p className="mt-6 text-xl text-slate-300">
-                No hidden fees, no surprise costs. Choose the package that fits your needs and budget.
+                Every tier has a single, clear price. Pick the package that fits your business and get started today.
               </p>
             </AnimatedElement>
             <AnimatedElement delay={0.2}>
@@ -200,7 +200,7 @@ export default function PricingPage() {
               </div>
               <div className="mt-8 p-4 bg-electric-50 rounded-lg border border-electric-100">
                 <p className="text-sm text-electric-700 text-center">
-                  <strong>Example:</strong> A Growth website ($2,000) + Standard plan ($129/month) = $2,000 upfront + $129/month ongoing
+                  <strong>Example:</strong> A Growth website ($1,000) + Standard plan ($49/month) = $1,000 upfront + $49/month ongoing
                 </p>
               </div>
             </div>
@@ -213,7 +213,7 @@ export default function PricingPage() {
         <SectionHeader
           eyebrow="Website Builds"
           title="Choose your foundation"
-          description="One-time investment to build your custom website. Price depends on complexity and specific requirements."
+          description="One-time investment to build your custom website. Each tier includes everything listed—no add-ons required."
         />
 
         <div className="mt-16 grid lg:grid-cols-3 gap-8">

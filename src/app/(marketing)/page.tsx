@@ -10,11 +10,11 @@ import FAQSection from '@/components/home/FAQSection'
 import TrustSignals from '@/components/home/TrustSignals'
 
 export const metadata: Metadata = {
-  title: 'Buildwise | Professional Websites Starting at $2,499 | No Hidden Fees',
-  description: 'Get a stunning, custom-designed website for your business starting at just $2,499. Includes ongoing support for $49/mo. 98% client satisfaction, 50+ websites delivered. 30-day money-back guarantee.',
+  title: 'Buildwise | Professional Websites $500–$2,000 | No Hidden Fees',
+  description: 'Custom-designed websites for your business. Starter $500, Growth $1,000, Pro $2,000. Includes hosting and support for $19/mo. 98% client satisfaction. 30-day money-back guarantee.',
   openGraph: {
-    title: 'Buildwise | Professional Websites Starting at $2,499',
-    description: 'Custom websites without the agency price tag. Starting at $2,499 + $49/mo support. 30-day guarantee. Book a free consultation today.',
+    title: 'Buildwise | Professional Websites $500–$2,000',
+    description: 'Custom websites without the agency price tag. Starter $500, Growth $1,000, Pro $2,000. Book a free consultation today.',
   },
 }
 

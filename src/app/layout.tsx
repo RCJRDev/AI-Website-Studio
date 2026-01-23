@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: '%s | Buildwise',
   },
   description:
-    'Professional website design and ongoing support for small businesses. Get a custom-built website with monthly maintenance starting at $49/month.',
+    'Professional website design and ongoing support for small businesses. Starter $500, Growth $1,000, Pro $2,000. Hosting and maintenance $19/month.',
   keywords: [
     'web design',
     'small business website',
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     siteName: 'Buildwise',
     title: 'Buildwise | Custom Websites for Small Businesses',
     description:
-      'Professional website design and ongoing support for small businesses. Get a custom-built website with monthly maintenance starting at $49/month.',
+      'Professional website design and ongoing support for small businesses. Starter $500, Growth $1,000, Pro $2,000. Hosting and maintenance $19/month.',
     images: [
       {
         url: '/og-image.png',

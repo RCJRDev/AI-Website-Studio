@@ -137,7 +137,7 @@ const faqs = [
   },
   {
     question: 'Do you write the content for the website?',
-    answer: 'We can provide guidance on content structure and what to include. If you need hands-on copywriting, we offer it as an add-on service starting at $500.',
+    answer: 'We provide guidance on content structure and what to include on each page. Many clients write their own content with our templates, or you can hire a copywriter separately.',
   },
 ]
 

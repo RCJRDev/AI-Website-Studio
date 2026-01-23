@@ -8,8 +8,8 @@ import AnimatedElement from '@/components/ui/AnimatedElement'
 const services = [
   {
     name: 'Starter',
-    price: '$750 – $1,000',
-    description: 'Perfect for new businesses and simple online presence needs.',
+    price: '$500',
+    description: 'A polished, professional website that gets your business online.',
     features: [
       'Up to 5 pages',
       'Mobile-responsive design',
@@ -21,8 +21,8 @@ const services = [
   },
   {
     name: 'Growth',
-    price: '$1,500 – $2,500',
-    description: 'For established businesses ready to expand their online reach.',
+    price: '$1,000',
+    description: 'Built to attract visitors and capture leads for your business.',
     features: [
       'Up to 10 pages',
       'Custom design elements',
@@ -36,8 +36,8 @@ const services = [
   },
   {
     name: 'Pro',
-    price: '$3,000 – $5,000',
-    description: 'Full-featured websites for businesses with complex needs.',
+    price: '$2,000',
+    description: 'A complete digital platform with advanced features to scale.',
     features: [
       'Unlimited pages',
       'E-commerce ready',
@@ -55,8 +55,8 @@ export default function ServicesOverview() {
     <Section background="gray">
       <SectionHeader
         eyebrow="Website Packages"
-        title="Transparent pricing. Real value."
-        description="Choose the package that fits your needs. All builds include our quality guarantee and dedicated support."
+        title="Simple pricing. Clear value."
+        description="One price per tier. No hidden fees. Every package includes our quality guarantee and dedicated support."
       />
 
       <div className="mt-16 grid md:grid-cols-3 gap-8">
@@ -124,7 +124,7 @@ export default function ServicesOverview() {
 
       <div className="mt-12 text-center">
         <p className="text-slate-600 mb-4">
-          All website builds require a monthly service plan starting at $49/month.
+          All website builds include a monthly service plan ($19/month) for hosting, security, and support.
         </p>
         <Link
           href="/pricing"

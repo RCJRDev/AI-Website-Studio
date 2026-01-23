@@ -75,7 +75,7 @@ export default function TermsPage() {
 
               <h3>3.3 Content</h3>
               <p>
-                Unless otherwise agreed, you are responsible for providing all content (text, images, videos) for your website. We can provide copywriting and content creation services as an add-on.
+                Unless otherwise agreed, you are responsible for providing all content (text, images, videos) for your website. We provide guidance and templates to help you create effective content.
               </p>
 
               <h3>3.4 Launch and Delivery</h3>

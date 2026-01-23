@@ -124,29 +124,6 @@ const services = [
   },
 ]
 
-const addOns = [
-  {
-    title: 'Copywriting',
-    description: 'Professional copywriting that speaks to your audience and drives action.',
-    price: 'Starting at $500',
-  },
-  {
-    title: 'Photography Direction',
-    description: 'Guidance on professional photography or sourcing high-quality stock images.',
-    price: 'Starting at $300',
-  },
-  {
-    title: 'Brand Identity',
-    description: 'Logo design, color palettes, and brand guidelines to establish your visual identity.',
-    price: 'Starting at $1,500',
-  },
-  {
-    title: 'Advanced SEO',
-    description: 'Ongoing SEO strategy, content planning, and monthly optimization.',
-    price: '$299/month',
-  },
-]
-
 export default function ServicesPage() {
   return (
     <>
@@ -201,27 +178,6 @@ export default function ServicesPage() {
                     </li>
                   ))}
                 </ul>
-              </div>
-            </AnimatedElement>
-          ))}
-        </div>
-      </Section>
-
-      {/* Add-Ons Section */}
-      <Section background="gray">
-        <SectionHeader
-          eyebrow="Add-On Services"
-          title="Enhance your project"
-          description="Additional services to complement your website build or monthly plan."
-        />
-
-        <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {addOns.map((addon, index) => (
-            <AnimatedElement key={addon.title} delay={index * 0.1}>
-              <div className="h-full p-6 rounded-xl bg-white border border-slate-200 hover:border-electric-200 hover:shadow-md transition-all">
-                <h3 className="font-semibold text-navy-900 mb-2">{addon.title}</h3>
-                <p className="text-sm text-slate-600 mb-4">{addon.description}</p>
-                <p className="text-electric-500 font-medium">{addon.price}</p>
               </div>
             </AnimatedElement>
           ))}

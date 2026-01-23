@@ -42,11 +42,11 @@ const projectTypes = [
 ] as const
 
 const budgetRanges = [
-  { value: '', label: 'Select budget range' },
-  { value: 'starter', label: '$750 – $1,000 (Starter)' },
-  { value: 'growth', label: '$1,500 – $2,500 (Growth)' },
-  { value: 'pro', label: '$3,000 – $5,000 (Pro)' },
-  { value: 'custom', label: '$5,000+ (Custom)' },
+  { value: '', label: 'Select your package' },
+  { value: 'starter', label: '$500 (Starter)' },
+  { value: 'growth', label: '$1,000 (Growth)' },
+  { value: 'pro', label: '$2,000 (Pro)' },
+  { value: 'custom', label: 'Custom project' },
   { value: 'unsure', label: 'Not sure yet' },
 ] as const
 
