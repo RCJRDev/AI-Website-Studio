@@ -12,6 +12,8 @@ interface FormData {
   budget: string
   timeline: string
   message: string
+  // Honeypot field for bot detection (should remain empty for real users)
+  website: string
 }
 
 interface FormErrors {
@@ -30,32 +32,32 @@ const initialFormData: FormData = {
   budget: '',
   timeline: '',
   message: '',
+  website: '', // Honeypot - bots will fill this
 }
 
 const projectTypes = [
-  { value: '', label: 'Select project type' },
-  { value: 'new-website', label: 'New Website' },
-  { value: 'redesign', label: 'Website Redesign' },
-  { value: 'ecommerce', label: 'E-Commerce Store' },
-  { value: 'landing-page', label: 'Landing Page' },
-  { value: 'other', label: 'Other' },
+  { value: '', label: 'What do you need?' },
+  { value: 'new-website', label: 'I need a new website' },
+  { value: 'redesign', label: 'I want to redesign my current site' },
+  { value: 'ecommerce', label: 'I need an online store' },
+  { value: 'landing-page', label: 'I need a landing page' },
+  { value: 'not-sure', label: 'I\'m not sure yet (let\'s talk!)' },
 ] as const
 
 const budgetRanges = [
-  { value: '', label: 'Select your package' },
-  { value: 'starter', label: '$500 (Starter)' },
-  { value: 'growth', label: '$1,000 (Growth)' },
-  { value: 'pro', label: '$2,000 (Pro)' },
-  { value: 'custom', label: 'Custom project' },
-  { value: 'unsure', label: 'Not sure yet' },
+  { value: '', label: 'What fits your budget?' },
+  { value: 'starter', label: 'Starter ($500) - Perfect for getting started' },
+  { value: 'growth', label: 'Growth ($1,000) - Most popular choice' },
+  { value: 'pro', label: 'Pro ($2,000) - Full featured solution' },
+  { value: 'unsure', label: 'Help me decide (no pressure!)' },
 ] as const
 
 const timelines = [
-  { value: '', label: 'Select timeline' },
+  { value: '', label: 'When do you want to launch?' },
   { value: 'asap', label: 'As soon as possible' },
-  { value: '1-month', label: 'Within 1 month' },
-  { value: '2-3-months', label: 'Within 2-3 months' },
-  { value: 'flexible', label: 'Flexible / No rush' },
+  { value: '1-month', label: 'Within a month' },
+  { value: '2-3-months', label: 'In the next few months' },
+  { value: 'flexible', label: 'Just exploring options' },
 ] as const
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -138,6 +140,13 @@ export default function ContactForm() {
     e.preventDefault()
     setSubmitError('')
 
+    // Honeypot check - if filled, silently reject (bot detected)
+    if (formData.website) {
+      // Pretend success to not alert the bot
+      setIsSubmitted(true)
+      return
+    }
+
     // Validate all fields
     const formErrors = validateForm(formData)
     setErrors(formErrors)
@@ -155,18 +164,26 @@ export default function ContactForm() {
 
     try {
       // Web3Forms - Simple email delivery
+      // API key from environment variable for security
+      const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY
+      if (!accessKey) {
+        throw new Error('Form configuration error')
+      }
+
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          access_key: '5e05e25f-e8b3-49d0-b11c-723f40184796',
+          access_key: accessKey,
           name: formData.name,
           email: formData.email,
           phone: formData.phone || 'Not provided',
           company: formData.company || 'Not provided',
           subject: `New Contact: ${formData.name} - ${formData.projectType}`,
+          // Web3Forms honeypot field (built-in spam protection)
+          botcheck: '',
           message: `
 Project Type: ${formData.projectType}
 Budget: ${formData.budget || 'Not provided'}
@@ -215,28 +232,28 @@ ${formData.message}
           </svg>
         </div>
         <h3 className="text-2xl font-bold text-navy-900 mb-3">
-          We got your message!
+          You're one step closer to a website that works!
         </h3>
         <p className="text-lg text-slate-600 mb-2">
-          We'll respond within 24 hours to schedule your free consultation.
+          We'll reach out within 24 hours (usually much sooner) to schedule your free consultation.
         </p>
         <p className="text-sm text-slate-500 mb-8">
-          Check your email (including spam) for our reply.
+          Check your inbox for a confirmation email from us.
         </p>
         <div className="space-y-3">
-          <p className="text-sm font-medium text-navy-900">What happens next?</p>
+          <p className="text-sm font-medium text-navy-900">Here's what happens next:</p>
           <div className="inline-flex flex-col text-left text-sm text-slate-600 space-y-2">
             <div className="flex items-start gap-2">
               <span className="text-electric-500 font-bold">1.</span>
-              <span>We'll review your project details</span>
+              <span>We review your project and prepare personalized recommendations</span>
             </div>
             <div className="flex items-start gap-2">
               <span className="text-electric-500 font-bold">2.</span>
-              <span>Schedule a 30-minute consultation call</span>
+              <span>We schedule a 30-minute call at your convenience</span>
             </div>
             <div className="flex items-start gap-2">
               <span className="text-electric-500 font-bold">3.</span>
-              <span>Get a custom proposal tailored to your needs</span>
+              <span>You get a custom proposal - zero pressure, zero obligation</span>
             </div>
           </div>
         </div>
@@ -250,6 +267,20 @@ ${formData.message}
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+      {/* Honeypot field - hidden from users, bots will fill it */}
+      <div className="absolute -left-[9999px] opacity-0" aria-hidden="true">
+        <label htmlFor="website">Website</label>
+        <input
+          type="text"
+          id="website"
+          name="website"
+          value={formData.website}
+          onChange={handleChange}
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <div className="grid sm:grid-cols-2 gap-6">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-navy-900 mb-2">
@@ -268,11 +299,11 @@ ${formData.message}
             aria-invalid={!!getFieldError('name')}
             aria-describedby={getFieldError('name') ? 'name-error' : undefined}
             className={clsx(
-              'w-full px-4 py-3 rounded-lg border transition-colors',
+              'w-full px-4 py-3 rounded-lg border transition-colors min-h-[48px]',
               'focus:outline-none focus:ring-2 focus:ring-offset-2',
               getFieldError('name')
-                ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
-                : 'border-slate-300 focus:border-electric-500 focus:ring-electric-500/20'
+                ? 'border-red-500 focus:border-red-500 focus:ring-red-500/30'
+                : 'border-slate-300 focus:border-electric-500 focus:ring-electric-500/30'
             )}
             placeholder="Your name"
           />
@@ -300,11 +331,11 @@ ${formData.message}
             aria-invalid={!!getFieldError('email')}
             aria-describedby={getFieldError('email') ? 'email-error' : undefined}
             className={clsx(
-              'w-full px-4 py-3 rounded-lg border transition-colors',
+              'w-full px-4 py-3 rounded-lg border transition-colors min-h-[48px]',
               'focus:outline-none focus:ring-2 focus:ring-offset-2',
               getFieldError('email')
-                ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
-                : 'border-slate-300 focus:border-electric-500 focus:ring-electric-500/20'
+                ? 'border-red-500 focus:border-red-500 focus:ring-red-500/30'
+                : 'border-slate-300 focus:border-electric-500 focus:ring-electric-500/30'
             )}
             placeholder="you@company.com"
           />
@@ -328,7 +359,7 @@ ${formData.message}
             autoComplete="tel"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-electric-500 focus:ring-2 focus:ring-electric-500/20 focus:ring-offset-2 outline-none transition-colors"
+            className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-electric-500 focus:ring-2 focus:ring-electric-500/30 focus:ring-offset-2 outline-none transition-colors min-h-[48px]"
             placeholder="(555) 123-4567"
           />
         </div>
@@ -344,7 +375,7 @@ ${formData.message}
             autoComplete="organization"
             value={formData.company}
             onChange={handleChange}
-            className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-electric-500 focus:ring-2 focus:ring-electric-500/20 focus:ring-offset-2 outline-none transition-colors"
+            className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-electric-500 focus:ring-2 focus:ring-electric-500/30 focus:ring-offset-2 outline-none transition-colors min-h-[48px]"
             placeholder="Your business name"
           />
         </div>
@@ -365,11 +396,11 @@ ${formData.message}
           aria-invalid={!!getFieldError('projectType')}
           aria-describedby={getFieldError('projectType') ? 'projectType-error' : undefined}
           className={clsx(
-            'w-full px-4 py-3 rounded-lg border transition-colors bg-white',
+            'w-full px-4 py-3 rounded-lg border transition-colors bg-white min-h-[48px]',
             'focus:outline-none focus:ring-2 focus:ring-offset-2',
             getFieldError('projectType')
-              ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
-              : 'border-slate-300 focus:border-electric-500 focus:ring-electric-500/20'
+              ? 'border-red-500 focus:border-red-500 focus:ring-red-500/30'
+              : 'border-slate-300 focus:border-electric-500 focus:ring-electric-500/30'
           )}
         >
           {projectTypes.map((type) => (
@@ -395,7 +426,7 @@ ${formData.message}
             name="budget"
             value={formData.budget}
             onChange={handleChange}
-            className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-electric-500 focus:ring-2 focus:ring-electric-500/20 focus:ring-offset-2 outline-none transition-colors bg-white"
+            className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-electric-500 focus:ring-2 focus:ring-electric-500/30 focus:ring-offset-2 outline-none transition-colors bg-white min-h-[48px]"
           >
             {budgetRanges.map((range) => (
               <option key={range.value} value={range.value}>
@@ -414,7 +445,7 @@ ${formData.message}
             name="timeline"
             value={formData.timeline}
             onChange={handleChange}
-            className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-electric-500 focus:ring-2 focus:ring-electric-500/20 focus:ring-offset-2 outline-none transition-colors bg-white"
+            className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-electric-500 focus:ring-2 focus:ring-electric-500/30 focus:ring-offset-2 outline-none transition-colors bg-white min-h-[48px]"
           >
             {timelines.map((option) => (
               <option key={option.value} value={option.value}>
@@ -441,11 +472,11 @@ ${formData.message}
           aria-invalid={!!getFieldError('message')}
           aria-describedby={getFieldError('message') ? 'message-error' : undefined}
           className={clsx(
-            'w-full px-4 py-3 rounded-lg border transition-colors resize-none',
+            'w-full px-4 py-3 rounded-lg border transition-colors resize-none min-h-[120px]',
             'focus:outline-none focus:ring-2 focus:ring-offset-2',
             getFieldError('message')
-              ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
-              : 'border-slate-300 focus:border-electric-500 focus:ring-electric-500/20'
+              ? 'border-red-500 focus:border-red-500 focus:ring-red-500/30'
+              : 'border-slate-300 focus:border-electric-500 focus:ring-electric-500/30'
           )}
           placeholder="What are you looking to build? What problems are you trying to solve? Any specific features or requirements?"
         />
@@ -500,13 +531,18 @@ ${formData.message}
         )}
       </button>
 
-      <p className="text-xs text-slate-500 text-center">
-        By submitting this form, you agree to our{' '}
-        <a href="/privacy" className="text-electric-500 hover:underline focus:outline-none focus:ring-2 focus:ring-electric-500 rounded">
-          Privacy Policy
-        </a>
-        .
-      </p>
+      <div className="text-center space-y-2">
+        <p className="text-sm text-slate-600">
+          No spam, no pressure. Just helpful advice for your business.
+        </p>
+        <p className="text-xs text-slate-500">
+          By submitting, you agree to our{' '}
+          <a href="/privacy" className="text-electric-500 hover:underline focus:outline-none focus:ring-2 focus:ring-electric-500 rounded">
+            Privacy Policy
+          </a>
+          . We respond within 24 hours.
+        </p>
+      </div>
     </form>
   )
 }

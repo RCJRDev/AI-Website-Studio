@@ -50,6 +50,18 @@ function sanitizeInput(input: string): string {
     .slice(0, 1000) // Limit length
 }
 
+// HTML escape for safe email content rendering
+function escapeHtml(text: string): string {
+  const htmlEntities: Record<string, string> = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  }
+  return text.replace(/[&<>"']/g, (char) => htmlEntities[char] || char)
+}
+
 function generateEmailHTML(data: {
   name: string
   email: string
@@ -94,13 +106,13 @@ function generateEmailHTML(data: {
             <td style="padding: 40px 30px;">
               <table width="100%" cellpadding="0" cellspacing="0">
                 ${[
-                  { label: 'Name', value: data.name, icon: '👤' },
-                  { label: 'Email', value: data.email, icon: '📧', link: `mailto:${data.email}` },
-                  data.phone ? { label: 'Phone', value: data.phone, icon: '📱', link: `tel:${data.phone}` } : null,
-                  data.company ? { label: 'Company', value: data.company, icon: '🏢' } : null,
-                  { label: 'Project Type', value: data.projectType, icon: '📋' },
-                  data.budget ? { label: 'Budget', value: data.budget, icon: '💰' } : null,
-                  data.timeline ? { label: 'Timeline', value: data.timeline, icon: '⏰' } : null,
+                  { label: 'Name', value: escapeHtml(data.name), icon: '👤' },
+                  { label: 'Email', value: escapeHtml(data.email), icon: '📧', link: `mailto:${encodeURIComponent(data.email)}` },
+                  data.phone ? { label: 'Phone', value: escapeHtml(data.phone), icon: '📱', link: `tel:${encodeURIComponent(data.phone)}` } : null,
+                  data.company ? { label: 'Company', value: escapeHtml(data.company), icon: '🏢' } : null,
+                  { label: 'Project Type', value: escapeHtml(data.projectType), icon: '📋' },
+                  data.budget ? { label: 'Budget', value: escapeHtml(data.budget), icon: '💰' } : null,
+                  data.timeline ? { label: 'Timeline', value: escapeHtml(data.timeline), icon: '⏰' } : null,
                 ]
                   .filter(Boolean)
                   .map(
@@ -136,7 +148,7 @@ function generateEmailHTML(data: {
                       💬 Message
                     </strong>
                     <div style="background-color: #f8fafc; border-left: 4px solid #3b82f6; padding: 16px; border-radius: 4px;">
-                      <p style="margin: 0; color: #1e293b; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">${data.message}</p>
+                      <p style="margin: 0; color: #1e293b; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">${escapeHtml(data.message)}</p>
                     </div>
                   </td>
                 </tr>
@@ -150,9 +162,9 @@ function generateEmailHTML(data: {
               <p style="margin: 0 0 12px; color: #64748b; font-size: 13px;">
                 This email was sent from your Buildwise contact form.
               </p>
-              <a href="mailto:${data.email}?subject=Re: Your inquiry about ${data.projectType}"
+              <a href="mailto:${encodeURIComponent(data.email)}?subject=Re: Your inquiry about ${encodeURIComponent(data.projectType)}"
                  style="display: inline-block; padding: 12px 24px; background-color: #3b82f6; color: #ffffff; text-decoration: none; border-radius: 6px; font-size: 14px; font-weight: 600; margin-top: 8px;">
-                Reply to ${data.name}
+                Reply to ${escapeHtml(data.name)}
               </a>
             </td>
           </tr>
@@ -183,7 +195,16 @@ export async function POST(request: NextRequest) {
 
     // Parse and validate request body
     const body = await request.json()
-    const { name, email, phone, company, projectType, budget, timeline, message } = body
+    const { name, email, phone, company, projectType, budget, timeline, message, website } = body
+
+    // Honeypot check - if filled, silently reject (bot detected)
+    if (website) {
+      // Return success to not alert the bot, but don't actually send
+      return NextResponse.json(
+        { success: true, message: 'Thank you for your message!' },
+        { status: 200 }
+      )
+    }
 
     // Validate required fields
     if (!name || !email || !projectType || !message) {

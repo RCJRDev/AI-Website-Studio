@@ -1,12 +1,9 @@
-'use client'
-
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 
 const stats = [
-  { value: '50+', label: 'Websites Launched' },
-  { value: '98%', label: 'Client Retention' },
-  { value: '24h', label: 'Support Response' },
+  { value: '50+', label: 'Happy Clients' },
+  { value: '98%', label: 'Client Satisfaction' },
+  { value: '2-4', label: 'Weeks to Launch' },
 ] as const
 
 export default function HeroSection() {
@@ -55,88 +52,64 @@ export default function HeroSection() {
       <div className="container-wide relative z-10 pt-32 pb-20">
         <div className="max-w-4xl mx-auto text-center">
           {/* Status Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-electric-300 text-sm font-medium mb-6 backdrop-blur-sm border border-white/10">
+          <div className="animate-fade-in-up">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 text-electric-200 text-sm font-medium mb-6 backdrop-blur-sm border border-white/20">
               <span
                 className="w-2 h-2 rounded-full bg-green-400 animate-pulse"
                 aria-hidden="true"
               />
-              <span>Limited spots available - 3 projects this month</span>
+              <span>Now accepting January projects - 3 spots left</span>
             </span>
-          </motion.div>
+          </div>
 
           {/* Main Heading */}
-          <motion.h1
+          <h1
             id="hero-heading"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="heading-1 text-white text-balance"
+            className="heading-1 text-white text-balance animate-fade-in-up [animation-delay:100ms]"
           >
-            Get a professional website{' '}
-            <span className="text-electric-400">without the agency price tag</span>
-          </motion.h1>
+            Turn visitors into customers{' '}
+            <span className="text-electric-300">with a website that works</span>
+          </h1>
 
           {/* Subheading */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-6 text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto text-balance"
-          >
-            Custom websites: Starter $500, Growth $1,000, Pro $2,000.
-            Hosting, security, and support included for $19/month.
-          </motion.p>
+          <p className="mt-6 text-lg sm:text-xl text-slate-200 max-w-2xl mx-auto text-balance leading-relaxed animate-fade-in-up [animation-delay:200ms]">
+            Get a professional, custom-designed website in 2-4 weeks.
+            Starting at $500 with ongoing support for just $19/month.
+          </p>
 
           {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up [animation-delay:300ms]">
             <Link
               href="/contact"
               className="btn-primary text-lg px-8 py-4 w-full sm:w-auto group"
             >
-              Start Your Project Today
+              Get My Free Consultation
               <svg
                 className="inline-block ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </Link>
             <Link
-              href="/pricing"
-              className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white border-2 border-white/30 rounded-lg hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 transition-all w-full sm:w-auto"
+              href="/portfolio"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white border-2 border-white/40 rounded-lg hover:bg-white/10 hover:border-white/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 transition-all w-full sm:w-auto min-h-[52px]"
             >
-              View Pricing
+              See Our Work
             </Link>
-          </motion.div>
+          </div>
 
           {/* Trust Line */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-6 text-sm text-slate-400"
-          >
-            ✓ Free consultation • ✓ 30-day money-back guarantee • ✓ No hidden fees
-          </motion.p>
+          <p className="mt-6 text-sm text-slate-300 animate-fade-in [animation-delay:400ms]">
+            No credit card required. Get personalized advice in your free 30-minute call.
+          </p>
 
           {/* Stats Grid - Fixed for mobile */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-lg mx-auto"
+          <div
+            className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-lg mx-auto animate-fade-in [animation-delay:500ms]"
             role="list"
             aria-label="Company statistics"
           >
@@ -149,26 +122,20 @@ export default function HeroSection() {
                 <div className="text-3xl sm:text-4xl font-bold text-white">
                   {stat.value}
                 </div>
-                <div className="text-sm text-slate-400 mt-1">{stat.label}</div>
+                <div className="text-sm text-slate-300 mt-1">{stat.label}</div>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden sm:block"
+        {/* Scroll Indicator - using CSS animation */}
+        <div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden sm:block animate-fade-in [animation-delay:1000ms]"
           aria-hidden="true"
         >
           <div className="flex flex-col items-center gap-2 text-slate-400">
             <span className="text-sm">Scroll to explore</span>
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
-            >
+            <div className="animate-bounce">
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -182,9 +149,9 @@ export default function HeroSection() {
                   d="M19 14l-7 7m0 0l-7-7m7 7V3"
                 />
               </svg>
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

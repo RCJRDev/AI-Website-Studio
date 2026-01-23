@@ -1,7 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { ReactNode } from 'react'
+import { useEffect, useRef, ReactNode, memo } from 'react'
+import clsx from 'clsx'
 
 interface AnimatedElementProps {
   children: ReactNode
@@ -10,40 +10,70 @@ interface AnimatedElementProps {
   direction?: 'up' | 'down' | 'left' | 'right' | 'none'
 }
 
-const directions = {
-  up: { y: 30, x: 0 },
-  down: { y: -30, x: 0 },
-  left: { y: 0, x: 30 },
-  right: { y: 0, x: -30 },
-  none: { y: 0, x: 0 },
+// Delay classes mapping for CSS-based staggered animations
+const delayClasses: Record<number, string> = {
+  0: '',
+  0.1: 'stagger-delay-1',
+  0.15: 'stagger-delay-1',
+  0.2: 'stagger-delay-2',
+  0.3: 'stagger-delay-3',
+  0.4: 'stagger-delay-4',
+  0.5: 'stagger-delay-5',
 }
 
-export default function AnimatedElement({
+function AnimatedElement({
   children,
   className,
   delay = 0,
   direction = 'up',
 }: AnimatedElementProps) {
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const element = ref.current
+    if (!element) return
+
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReducedMotion) {
+      element.classList.add('is-visible')
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '-50px',
+      }
+    )
+
+    observer.observe(element)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
+  // Map delay prop to CSS class
+  const delayClass = delayClasses[delay] || ''
+
   return (
-    <motion.div
-      initial={{
-        opacity: 0,
-        ...directions[direction],
-      }}
-      whileInView={{
-        opacity: 1,
-        x: 0,
-        y: 0,
-      }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{
-        duration: 0.5,
-        delay,
-        ease: [0.21, 0.47, 0.32, 0.98],
-      }}
-      className={className}
+    <div
+      ref={ref}
+      className={clsx('scroll-animate', delayClass, className)}
     >
       {children}
-    </motion.div>
+    </div>
   )
 }
+
+// Memoize to prevent unnecessary re-renders
+export default memo(AnimatedElement)

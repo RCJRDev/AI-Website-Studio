@@ -1,11 +1,22 @@
 'use client'
 
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback, useRef, memo } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
+import dynamic from 'next/dynamic'
 import Logo from '@/components/ui/Logo'
 import clsx from 'clsx'
+
+// Dynamically import framer-motion components for mobile menu only
+const MotionDiv = dynamic(
+  () => import('framer-motion').then((mod) => mod.motion.div),
+  { ssr: false }
+)
+
+const AnimatePresence = dynamic(
+  () => import('framer-motion').then((mod) => mod.AnimatePresence),
+  { ssr: false }
+)
 
 const navigation = [
   { name: 'Services', href: '/services' },
@@ -15,7 +26,7 @@ const navigation = [
   { name: 'About', href: '/about' },
 ] as const
 
-export default function Header() {
+function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
@@ -112,7 +123,7 @@ export default function Header() {
             className="relative flex-shrink-0 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-500 focus-visible:ring-offset-2"
             aria-label="Buildwise - Home"
           >
-            <Logo variant={isScrolled ? 'dark' : 'dark'} />
+            <Logo variant="dark" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -135,11 +146,7 @@ export default function Header() {
                 >
                   {item.name}
                   {isActive && (
-                    <motion.span
-                      layoutId="activeNav"
-                      className="absolute bottom-0 left-2 right-2 h-0.5 bg-electric-500 rounded-full"
-                      transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                    />
+                    <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-electric-500 rounded-full" />
                   )}
                 </Link>
               )
@@ -152,7 +159,7 @@ export default function Header() {
               href="/contact"
               className="btn-primary text-sm"
             >
-              Book a Call
+              Free Consultation
             </Link>
           </div>
 
@@ -200,7 +207,7 @@ export default function Header() {
         {isMobileMenuOpen && (
           <>
             {/* Backdrop */}
-            <motion.div
+            <MotionDiv
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -211,7 +218,7 @@ export default function Header() {
             />
 
             {/* Menu Panel */}
-            <motion.div
+            <MotionDiv
               ref={mobileMenuRef}
               id="mobile-menu"
               initial={{ opacity: 0, y: -8 }}
@@ -269,14 +276,16 @@ export default function Header() {
                     className="btn-primary w-full justify-center"
                     onClick={closeMobileMenu}
                   >
-                    Book a Call
+                    Free Consultation
                   </Link>
                 </div>
               </nav>
-            </motion.div>
+            </MotionDiv>
           </>
         )}
       </AnimatePresence>
     </header>
   )
 }
+
+export default memo(Header)

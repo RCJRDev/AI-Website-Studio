@@ -29,7 +29,7 @@ export default function SectionHeader({
         <p
           className={clsx(
             'text-sm font-semibold uppercase tracking-wider mb-3',
-            dark ? 'text-electric-400' : 'text-electric-500'
+            dark ? 'text-electric-300' : 'text-electric-600'
           )}
         >
           {eyebrow}
@@ -47,7 +47,7 @@ export default function SectionHeader({
         <p
           className={clsx(
             'mt-4 body-large',
-            dark ? 'text-slate-300' : 'text-slate-600'
+            dark ? 'text-slate-200' : 'text-slate-700'
           )}
         >
           {description}

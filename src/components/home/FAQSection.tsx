@@ -1,10 +1,9 @@
 'use client'
 
-import { useState, useCallback, useId } from 'react'
+import { useState, useCallback, useId, useRef, useEffect, memo } from 'react'
 import Section from '@/components/ui/Section'
 import SectionHeader from '@/components/ui/SectionHeader'
 import AnimatedElement from '@/components/ui/AnimatedElement'
-import { motion, AnimatePresence } from 'framer-motion'
 
 const faqs = [
   {
@@ -47,9 +46,17 @@ interface FAQItemProps {
   id: string
 }
 
-function FAQItem({ question, answer, isOpen, onToggle, id }: FAQItemProps) {
+const FAQItem = memo(function FAQItem({ question, answer, isOpen, onToggle, id }: FAQItemProps) {
   const buttonId = `faq-button-${id}`
   const panelId = `faq-panel-${id}`
+  const contentRef = useRef<HTMLDivElement>(null)
+  const [height, setHeight] = useState<number | undefined>(undefined)
+
+  useEffect(() => {
+    if (contentRef.current) {
+      setHeight(contentRef.current.scrollHeight)
+    }
+  }, [answer])
 
   return (
     <div className="border-b border-slate-200 last:border-0">
@@ -65,7 +72,7 @@ function FAQItem({ question, answer, isOpen, onToggle, id }: FAQItemProps) {
             {question}
           </span>
           <span
-            className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
+            className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-200 ${
               isOpen
                 ? 'bg-electric-500 text-white'
                 : 'bg-slate-100 text-slate-600'
@@ -90,25 +97,24 @@ function FAQItem({ question, answer, isOpen, onToggle, id }: FAQItemProps) {
           </span>
         </button>
       </h3>
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            id={panelId}
-            role="region"
-            aria-labelledby={buttonId}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2, ease: 'easeInOut' }}
-            className="overflow-hidden"
-          >
-            <p className="pb-6 text-slate-600 leading-relaxed">{answer}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div
+        id={panelId}
+        role="region"
+        aria-labelledby={buttonId}
+        aria-hidden={!isOpen}
+        className="overflow-hidden transition-[max-height,opacity] duration-200 ease-in-out"
+        style={{
+          maxHeight: isOpen ? height : 0,
+          opacity: isOpen ? 1 : 0,
+        }}
+      >
+        <div ref={contentRef}>
+          <p className="pb-6 text-slate-600 leading-relaxed">{answer}</p>
+        </div>
+      </div>
     </div>
   )
-}
+})
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)

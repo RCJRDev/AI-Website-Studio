@@ -137,7 +137,7 @@ export default function ServicesPage() {
               </h1>
             </AnimatedElement>
             <AnimatedElement delay={0.1}>
-              <p className="mt-6 text-xl text-slate-300">
+              <p className="mt-6 text-xl text-slate-200 leading-relaxed">
                 From design to launch and beyond, we provide everything you need to establish and grow your online presence.
               </p>
             </AnimatedElement>
@@ -157,16 +157,17 @@ export default function ServicesPage() {
                 <h2 className="text-xl font-bold text-navy-900 mb-3">
                   {service.title}
                 </h2>
-                <p className="text-slate-600 mb-6">
+                <p className="text-slate-700 mb-6">
                   {service.description}
                 </p>
-                <ul className="space-y-2">
+                <ul className="space-y-2.5">
                   {service.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2 text-sm text-slate-600">
+                    <li key={feature} className="flex items-start gap-2 text-sm text-slate-700">
                       <svg
-                        className="w-4 h-4 text-electric-500 flex-shrink-0 mt-0.5"
+                        className="w-4 h-4 text-electric-600 flex-shrink-0 mt-0.5"
                         fill="currentColor"
                         viewBox="0 0 20 20"
+                        aria-hidden="true"
                       >
                         <path
                           fillRule="evenodd"
@@ -195,7 +196,7 @@ export default function ServicesPage() {
               <h2 className="heading-2 text-navy-900">
                 Your website needs ongoing care
               </h2>
-              <p className="mt-4 text-lg text-slate-600">
+              <p className="mt-4 text-lg text-slate-700 leading-relaxed">
                 A website isn't a "set it and forget it" project. Security threats evolve, software needs updates, and your business grows. Our monthly plans ensure your site stays secure, fast, and relevant.
               </p>
             </AnimatedElement>
@@ -248,21 +249,21 @@ export default function ServicesPage() {
                 <h3 className="text-2xl font-bold text-navy-900 mb-4">
                   Peace of Mind Included
                 </h3>
-                <p className="text-slate-600 mb-8">
+                <p className="text-slate-700 mb-8">
                   Focus on running your business while we handle the technical details. Our team monitors your site 24/7 so you don't have to.
                 </p>
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
-                    <div className="text-3xl font-bold text-electric-500">99.9%</div>
-                    <div className="text-sm text-slate-500 mt-1">Uptime</div>
+                    <div className="text-3xl font-bold text-electric-600">99.9%</div>
+                    <div className="text-sm text-slate-600 mt-1">Uptime</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-electric-500">24h</div>
-                    <div className="text-sm text-slate-500 mt-1">Response</div>
+                    <div className="text-3xl font-bold text-electric-600">24h</div>
+                    <div className="text-sm text-slate-600 mt-1">Response</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-electric-500">Daily</div>
-                    <div className="text-sm text-slate-500 mt-1">Backups</div>
+                    <div className="text-3xl font-bold text-electric-600">Daily</div>
+                    <div className="text-sm text-slate-600 mt-1">Backups</div>
                   </div>
                 </div>
               </div>
@@ -278,11 +279,14 @@ export default function ServicesPage() {
             <h2 className="heading-2 text-white">
               Ready to discuss your project?
             </h2>
-            <p className="mt-4 text-xl text-slate-300 max-w-2xl mx-auto">
+            <p className="mt-4 text-xl text-slate-200 max-w-2xl mx-auto leading-relaxed">
               Book a free consultation and let's talk about what you need. No pressure, no obligation—just a conversation about your goals.
             </p>
             <div className="mt-8">
-              <Link href="/contact" className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-navy-900 bg-white rounded-lg hover:bg-slate-100 transition-colors">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-navy-900 bg-white rounded-lg hover:bg-slate-50 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 min-h-[56px] shadow-xl hover:shadow-2xl"
+              >
                 Book Your Free Consultation
               </Link>
             </div>

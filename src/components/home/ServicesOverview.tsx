@@ -79,7 +79,7 @@ export default function ServicesOverview() {
 
               <div className="text-center">
                 <h3 className="text-2xl font-bold text-navy-900">{service.name}</h3>
-                <p className="mt-2 text-slate-600">{service.description}</p>
+                <p className="mt-2 text-slate-700">{service.description}</p>
                 <div className="mt-4">
                   <span className="text-3xl font-bold text-navy-900">{service.price}</span>
                   <span className="text-slate-500 ml-1">one-time</span>
@@ -107,14 +107,15 @@ export default function ServicesOverview() {
 
               <div className="mt-8">
                 <Link
-                  href={service.href}
-                  className={`block w-full text-center py-3 px-6 rounded-lg font-medium transition-all ${
+                  href="/contact"
+                  className={`block w-full text-center py-3.5 px-6 rounded-lg font-semibold transition-all min-h-[48px] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
                     service.popular
-                      ? 'bg-electric-500 text-white hover:bg-electric-600 shadow-lg shadow-electric-500/25'
-                      : 'bg-navy-900 text-white hover:bg-navy-800'
+                      ? 'bg-electric-600 text-white hover:bg-electric-700 shadow-lg shadow-electric-600/25 focus-visible:ring-electric-500'
+                      : 'bg-navy-900 text-white hover:bg-navy-800 focus-visible:ring-navy-900'
                   }`}
+                  aria-label={`Get started with ${service.name} package for ${service.price}`}
                 >
-                  Learn More
+                  {service.popular ? 'Get Started - Most Popular' : 'Get Started'}
                 </Link>
               </div>
             </div>
@@ -123,15 +124,15 @@ export default function ServicesOverview() {
       </div>
 
       <div className="mt-12 text-center">
-        <p className="text-slate-600 mb-4">
+        <p className="text-slate-700 mb-4">
           All website builds include a monthly service plan ($19/month) for hosting, security, and support.
         </p>
         <Link
           href="/pricing"
-          className="text-electric-500 font-semibold hover:text-electric-600 inline-flex items-center gap-2"
+          className="text-electric-600 font-semibold hover:text-electric-700 inline-flex items-center gap-2 px-2 py-1 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-500 focus-visible:ring-offset-2 transition-colors"
         >
           View full pricing details
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </Link>

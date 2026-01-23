@@ -3,12 +3,30 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-slate-300 text-navy-900 antialiased;
+    @apply bg-slate-50 text-navy-900 antialiased;
   }
 
   ::selection {
     @apply bg-electric-500 text-white;
+  }
+
+  /* Improve focus visibility for all interactive elements */
+  :focus-visible {
+    @apply outline-none ring-2 ring-electric-500 ring-offset-2;
+  }
+
+  /* Reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
@@ -26,39 +44,39 @@
   }
 
   .heading-1 {
-    @apply text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight;
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1];
   }
 
   .heading-2 {
-    @apply text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight;
+    @apply text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15];
   }
 
   .heading-3 {
-    @apply text-2xl sm:text-3xl font-bold tracking-tight;
+    @apply text-2xl sm:text-3xl font-bold tracking-tight leading-tight;
   }
 
   .heading-4 {
-    @apply text-xl sm:text-2xl font-semibold;
+    @apply text-xl sm:text-2xl font-semibold leading-snug;
   }
 
   .body-large {
-    @apply text-lg sm:text-xl text-slate-600 leading-relaxed;
+    @apply text-lg sm:text-xl text-slate-700 leading-relaxed;
   }
 
   .body-regular {
-    @apply text-base text-slate-600 leading-relaxed;
+    @apply text-base text-slate-700 leading-relaxed;
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-electric-500 rounded-lg hover:bg-electric-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-500 focus-visible:ring-offset-2 transition-all duration-200 shadow-lg shadow-electric-500/30 hover:shadow-xl hover:shadow-electric-500/40 hover:-translate-y-0.5 active:translate-y-0 active:shadow-lg;
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-electric-600 rounded-lg hover:bg-electric-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-500 focus-visible:ring-offset-2 transition-all duration-200 shadow-lg shadow-electric-600/25 hover:shadow-xl hover:shadow-electric-600/30 hover:-translate-y-0.5 active:translate-y-0 active:shadow-lg active:bg-electric-700;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-navy-900 bg-white border-2 border-navy-900 rounded-lg hover:bg-navy-900 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-navy-900 focus-visible:ring-offset-2 transition-all duration-200 hover:shadow-md active:scale-[0.98];
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-navy-900 bg-white border-2 border-navy-900 rounded-lg hover:bg-navy-900 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-navy-900 focus-visible:ring-offset-2 transition-all duration-200 hover:shadow-md active:scale-[0.98] active:bg-navy-950;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-navy-900 hover:text-electric-500 focus:outline-none transition-colors duration-200;
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-navy-900 hover:text-electric-600 hover:bg-electric-50 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-500 focus-visible:ring-offset-2 transition-all duration-200;
   }
 
   .card {
@@ -81,5 +99,64 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Minimum touch target size for accessibility (44x44px) */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* Skip link for keyboard navigation */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-electric-600 focus:text-white focus:rounded-lg focus:font-semibold;
+  }
+
+  /* Performance-optimized scroll animations using CSS instead of JS */
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .scroll-animate.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Animation delays for staggered effects */
+  .stagger-delay-1 { transition-delay: 100ms; }
+  .stagger-delay-2 { transition-delay: 200ms; }
+  .stagger-delay-3 { transition-delay: 300ms; }
+  .stagger-delay-4 { transition-delay: 400ms; }
+  .stagger-delay-5 { transition-delay: 500ms; }
+
+  /* Initial load animations - CSS-only, no JavaScript required */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.5s ease-out both;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out both;
+  }
+}
+
+/* Keyframes for CSS animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

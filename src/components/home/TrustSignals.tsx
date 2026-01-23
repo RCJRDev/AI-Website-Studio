@@ -1,19 +1,17 @@
-'use client'
-
-import { motion } from 'framer-motion'
+import AnimatedElement from '@/components/ui/AnimatedElement'
 
 const trustStats = [
-  { value: '50+', label: 'Projects Delivered' },
-  { value: '98%', label: 'Client Satisfaction' },
-  { value: '<24h', label: 'Avg Response Time' },
-  { value: '100%', label: 'On-Time Delivery' },
+  { value: '50+', label: 'Businesses Helped' },
+  { value: '98%', label: 'Would Recommend Us' },
+  { value: '2-4 Wks', label: 'Average Launch Time' },
+  { value: '30 Days', label: 'Money-Back Guarantee' },
 ]
 
 const trustBadges = [
-  { icon: '⚡', label: 'Lightning Fast' },
-  { icon: '🔒', label: 'Bank-Level Security' },
-  { icon: '📱', label: 'Mobile Optimized' },
-  { icon: '🎯', label: 'SEO Ready' },
+  { icon: '✓', label: 'No Hidden Fees' },
+  { icon: '✓', label: 'Free Consultation' },
+  { icon: '✓', label: 'You Own Your Site' },
+  { icon: '✓', label: 'Cancel Anytime' },
 ]
 
 export default function TrustSignals() {
@@ -23,12 +21,9 @@ export default function TrustSignals() {
         {/* Stats Row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 pb-8 border-b border-slate-200">
           {trustStats.map((stat, index) => (
-            <motion.div
+            <AnimatedElement
               key={stat.label}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              delay={index * 0.1}
               className="text-center"
             >
               <div className="text-3xl font-bold text-electric-600 mb-1">
@@ -37,26 +32,23 @@ export default function TrustSignals() {
               <div className="text-sm text-slate-600 font-medium">
                 {stat.label}
               </div>
-            </motion.div>
+            </AnimatedElement>
           ))}
         </div>
 
         {/* Trust Badges */}
         <div className="flex flex-wrap items-center justify-center gap-6">
           {trustBadges.map((badge, index) => (
-            <motion.div
+            <AnimatedElement
               key={badge.label}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              delay={index * 0.1}
               className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-50 border border-slate-200"
             >
-              <span className="text-xl">{badge.icon}</span>
+              <span className="text-xl text-electric-500" aria-hidden="true">{badge.icon}</span>
               <span className="text-sm font-semibold text-slate-700">
                 {badge.label}
               </span>
-            </motion.div>
+            </AnimatedElement>
           ))}
         </div>
       </div>

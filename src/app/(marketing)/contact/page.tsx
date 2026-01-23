@@ -71,21 +71,21 @@ export default function ContactPage() {
         <div className="container-wide">
           <div className="max-w-3xl mx-auto text-center">
             <AnimatedElement>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-electric-300 text-sm font-medium mb-6 backdrop-blur-sm border border-white/10">
-                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 text-electric-200 text-sm font-medium mb-6 backdrop-blur-sm border border-white/20">
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" aria-hidden="true" />
                 <span>Typically respond within 2 hours</span>
               </div>
             </AnimatedElement>
             <AnimatedElement>
-              <h1 className="heading-1 text-white">Ready to grow your business?</h1>
+              <h1 className="heading-1 text-white">Let's talk about your website</h1>
             </AnimatedElement>
             <AnimatedElement delay={0.1}>
-              <p className="mt-6 text-xl text-slate-300">
-                Book your free 30-minute consultation. Get expert advice, a custom strategy, and transparent pricing—with zero pressure or obligation.
+              <p className="mt-6 text-xl text-slate-200 leading-relaxed">
+                Tell us about your business and we'll show you exactly how a better website can bring you more customers. No pressure, no hard sell - just honest advice.
               </p>
             </AnimatedElement>
             <AnimatedElement delay={0.2}>
-              <div className="mt-6 flex flex-wrap justify-center gap-4 text-sm text-slate-300">
+              <div className="mt-6 flex flex-wrap justify-center gap-4 text-sm text-slate-200">
                 <div className="flex items-center gap-2">
                   <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -119,7 +119,7 @@ export default function ContactPage() {
               <h2 className="text-2xl font-bold text-navy-900 mb-2">
                 Book Your Free Consultation
               </h2>
-              <p className="text-slate-600 mb-8">
+              <p className="text-slate-700 mb-8">
                 Fill out the form below and we'll get back to you within 24 hours to schedule a call.
               </p>
               <ContactForm />
@@ -140,16 +140,16 @@ export default function ContactPage() {
                         {item.icon}
                       </div>
                       <div>
-                        <p className="text-sm text-slate-500">{item.title}</p>
+                        <p className="text-sm text-slate-600">{item.title}</p>
                         {item.href ? (
                           <a
                             href={item.href}
-                            className="font-medium text-navy-900 hover:text-electric-500 transition-colors"
+                            className="font-semibold text-navy-900 hover:text-electric-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-500 rounded"
                           >
                             {item.value}
                           </a>
                         ) : (
-                          <p className="font-medium text-navy-900">{item.value}</p>
+                          <p className="font-semibold text-navy-900">{item.value}</p>
                         )}
                       </div>
                     </div>
@@ -171,11 +171,12 @@ export default function ContactPage() {
                     'Detailed proposal if we\'re a good fit',
                     'No pressure, no hard sell—ever',
                   ].map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm text-slate-600">
+                    <li key={item} className="flex items-start gap-2.5 text-sm text-slate-700">
                       <svg
-                        className="w-4 h-4 text-electric-500 flex-shrink-0 mt-0.5"
+                        className="w-4 h-4 text-electric-600 flex-shrink-0 mt-0.5"
                         fill="currentColor"
                         viewBox="0 0 20 20"
+                        aria-hidden="true"
                       >
                         <path
                           fillRule="evenodd"
@@ -198,8 +199,8 @@ export default function ContactPage() {
                 <div className="space-y-4">
                   {faqs.map((faq) => (
                     <div key={faq.question} className="border-b border-slate-200 pb-4 last:border-0 last:pb-0">
-                      <h4 className="font-medium text-navy-900 mb-1">{faq.question}</h4>
-                      <p className="text-sm text-slate-600">{faq.answer}</p>
+                      <h4 className="font-semibold text-navy-900 mb-1">{faq.question}</h4>
+                      <p className="text-sm text-slate-700">{faq.answer}</p>
                     </div>
                   ))}
                 </div>
@@ -216,7 +217,7 @@ export default function ContactPage() {
             <h2 className="heading-3 text-navy-900 mb-4">
               We work with clients everywhere
             </h2>
-            <p className="text-slate-600 max-w-2xl mx-auto">
+            <p className="text-slate-700 max-w-2xl mx-auto">
               Based in the United States, but we work with clients across the country and internationally. All consultations happen over video call, making it easy to connect no matter where you're located.
             </p>
           </AnimatedElement>
