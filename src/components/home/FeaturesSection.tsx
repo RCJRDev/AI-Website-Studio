@@ -73,8 +73,8 @@ export default function FeaturesSection() {
       <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {features.map((feature, index) => (
           <AnimatedElement key={feature.title} delay={index * 0.1}>
-            <div className="p-6 rounded-2xl border border-slate-200 hover:border-electric-200 hover:shadow-lg transition-all duration-300 bg-white group">
-              <div className="w-12 h-12 rounded-xl bg-electric-100 text-electric-600 flex items-center justify-center group-hover:bg-electric-500 group-hover:text-white transition-colors">
+            <div className="p-6 rounded-2xl border border-slate-200 hover:border-electric-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-white group">
+              <div className="w-12 h-12 rounded-xl bg-electric-100 text-electric-600 flex items-center justify-center group-hover:bg-electric-500 group-hover:text-white group-hover:scale-110 transition-all duration-300">
                 {feature.icon}
               </div>
               <h3 className="mt-4 text-xl font-semibold text-navy-900">

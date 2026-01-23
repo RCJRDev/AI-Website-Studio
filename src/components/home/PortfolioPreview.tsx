@@ -41,16 +41,16 @@ export default function PortfolioPreview() {
       <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, index) => (
           <AnimatedElement key={project.title} delay={index * 0.1}>
-            <div className="group rounded-2xl overflow-hidden border border-slate-200 hover:border-electric-200 transition-all duration-300 hover:shadow-xl bg-white">
-              <div className="aspect-[4/3] relative overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200">
+            <div className="group rounded-2xl overflow-hidden border border-slate-200 hover:border-electric-300 transition-all duration-300 hover:shadow-2xl hover:shadow-electric-500/10 hover:-translate-y-1 bg-white">
+              <div className="aspect-[4/3] relative overflow-hidden bg-gradient-to-br from-electric-50 via-slate-50 to-accent-50">
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-xl bg-electric-100 text-electric-600 flex items-center justify-center">
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-electric-500 to-electric-600 text-white flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
+                    <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                   </div>
                 </div>
-                <div className="absolute inset-0 bg-navy-900/0 group-hover:bg-navy-900/10 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
 
               <div className="p-6">

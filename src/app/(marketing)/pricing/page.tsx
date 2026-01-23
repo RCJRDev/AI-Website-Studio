@@ -144,6 +144,28 @@ export default function PricingPage() {
                 No hidden fees, no surprise costs. Choose the package that fits your needs and budget.
               </p>
             </AnimatedElement>
+            <AnimatedElement delay={0.2}>
+              <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm text-slate-300">
+                <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20">
+                  <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  30-Day Money-Back Guarantee
+                </div>
+                <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20">
+                  <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  Flexible Payment Plans
+                </div>
+                <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20">
+                  <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  Cancel Anytime
+                </div>
+              </div>
+            </AnimatedElement>
           </div>
         </div>
       </section>
@@ -258,13 +280,18 @@ export default function PricingPage() {
 
                 <Link
                   href="/contact"
-                  className={`w-full text-center py-3 px-6 rounded-lg font-medium transition-all ${
+                  className={`w-full text-center py-3 px-6 rounded-lg font-semibold transition-all group ${
                     pkg.popular
-                      ? 'bg-electric-500 text-white hover:bg-electric-600 shadow-lg shadow-electric-500/25'
-                      : 'bg-navy-900 text-white hover:bg-navy-800'
+                      ? 'bg-electric-500 text-white hover:bg-electric-600 hover:shadow-xl shadow-lg shadow-electric-500/30'
+                      : 'bg-navy-900 text-white hover:bg-navy-800 hover:shadow-lg'
                   }`}
                 >
-                  Get Started
+                  <span className="flex items-center justify-center gap-2">
+                    Get Started
+                    <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </span>
                 </Link>
               </div>
             </AnimatedElement>
@@ -337,13 +364,18 @@ export default function PricingPage() {
 
                 <Link
                   href="/contact"
-                  className={`w-full text-center py-3 px-6 rounded-lg font-medium transition-all ${
+                  className={`w-full text-center py-3 px-6 rounded-lg font-semibold transition-all group ${
                     plan.popular
-                      ? 'bg-electric-500 text-white hover:bg-electric-600 shadow-lg shadow-electric-500/25'
-                      : 'bg-navy-900 text-white hover:bg-navy-800'
+                      ? 'bg-electric-500 text-white hover:bg-electric-600 hover:shadow-xl shadow-lg shadow-electric-500/30'
+                      : 'bg-navy-900 text-white hover:bg-navy-800 hover:shadow-lg'
                   }`}
                 >
-                  Get Started
+                  <span className="flex items-center justify-center gap-2">
+                    Get Started
+                    <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </span>
                 </Link>
               </div>
             </AnimatedElement>
@@ -429,8 +461,11 @@ export default function PricingPage() {
               Book a free consultation and we'll help you choose the right package for your business goals and budget.
             </p>
             <div className="mt-8">
-              <Link href="/contact" className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-navy-900 bg-white rounded-lg hover:bg-slate-100 transition-colors">
+              <Link href="/contact" className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-navy-900 bg-white rounded-lg hover:bg-slate-100 hover:scale-105 transition-all shadow-xl group">
                 Book Your Free Consultation
+                <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
               </Link>
             </div>
           </AnimatedElement>

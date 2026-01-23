@@ -65,7 +65,7 @@ export default function HeroSection() {
                 className="w-2 h-2 rounded-full bg-green-400 animate-pulse"
                 aria-hidden="true"
               />
-              <span>Now accepting new clients</span>
+              <span>Limited spots available - 3 projects this month</span>
             </span>
           </motion.div>
 
@@ -77,8 +77,8 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="heading-1 text-white text-balance"
           >
-            Websites that work.{' '}
-            <span className="text-electric-400">Support that lasts.</span>
+            Get a professional website{' '}
+            <span className="text-electric-400">without the agency price tag</span>
           </motion.h1>
 
           {/* Subheading */}
@@ -88,8 +88,9 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-6 text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto text-balance"
           >
-            Custom-built websites with ongoing expert support. We handle the
-            technical details so you can focus on running your business.
+            Custom-designed websites starting at $2,499. Includes ongoing support,
+            security updates, and technical maintenance for just $49/month.
+            No long-term contracts required.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -101,17 +102,35 @@ export default function HeroSection() {
           >
             <Link
               href="/contact"
-              className="btn-primary text-lg px-8 py-4 w-full sm:w-auto"
+              className="btn-primary text-lg px-8 py-4 w-full sm:w-auto group"
             >
-              Book a Free Consultation
+              Start Your Project Today
+              <svg
+                className="inline-block ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
             </Link>
             <Link
-              href="/portfolio"
-              className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white border-2 border-white/30 rounded-lg hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-navy-900 transition-colors w-full sm:w-auto"
+              href="/pricing"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white border-2 border-white/30 rounded-lg hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 transition-all w-full sm:w-auto"
             >
-              View Our Work
+              View Pricing
             </Link>
           </motion.div>
+
+          {/* Trust Line */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-6 text-sm text-slate-400"
+          >
+            ✓ Free consultation • ✓ 30-day money-back guarantee • ✓ No hidden fees
+          </motion.p>
 
           {/* Stats Grid - Fixed for mobile */}
           <motion.div

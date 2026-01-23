@@ -65,12 +65,16 @@ export default function TestimonialsSection() {
               </blockquote>
 
               <div className="mt-6 flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-electric-500 flex items-center justify-center text-white font-bold text-lg">
+                <div className="relative w-12 h-12 rounded-full bg-gradient-to-br from-electric-500 to-electric-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">
                   {testimonial.author.charAt(0)}
+                  <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-green-500 rounded-full border-2 border-navy-900" title="Verified customer" />
                 </div>
                 <div>
-                  <div className="font-semibold text-white">
+                  <div className="font-semibold text-white flex items-center gap-2">
                     {testimonial.author}
+                    <svg className="w-4 h-4 text-electric-400" fill="currentColor" viewBox="0 0 20 20" title="Verified">
+                      <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
                   </div>
                   <div className="text-sm text-slate-400">
                     {testimonial.role}, {testimonial.company}

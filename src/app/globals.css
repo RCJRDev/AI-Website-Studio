@@ -50,11 +50,11 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-electric-500 rounded-lg hover:bg-electric-600 focus:outline-none focus:ring-2 focus:ring-electric-500 focus:ring-offset-2 transition-all duration-200 shadow-lg shadow-electric-500/25 hover:shadow-xl hover:shadow-electric-500/30 hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-electric-500 rounded-lg hover:bg-electric-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-electric-500 focus-visible:ring-offset-2 transition-all duration-200 shadow-lg shadow-electric-500/30 hover:shadow-xl hover:shadow-electric-500/40 hover:-translate-y-0.5 active:translate-y-0 active:shadow-lg;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-navy-900 bg-white border-2 border-navy-900 rounded-lg hover:bg-navy-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-navy-900 focus:ring-offset-2 transition-all duration-200;
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-navy-900 bg-white border-2 border-navy-900 rounded-lg hover:bg-navy-900 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-navy-900 focus-visible:ring-offset-2 transition-all duration-200 hover:shadow-md active:scale-[0.98];
   }
 
   .btn-ghost {
@@ -62,11 +62,11 @@
   }
 
   .card {
-    @apply bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300;
+    @apply bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-300;
   }
 
   .card-elevated {
-    @apply bg-white rounded-2xl shadow-xl border border-slate-100;
+    @apply bg-white rounded-2xl shadow-xl border border-slate-100 hover:shadow-2xl transition-shadow duration-300;
   }
 
   .gradient-text {

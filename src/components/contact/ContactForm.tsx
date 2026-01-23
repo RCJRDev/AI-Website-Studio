@@ -82,8 +82,8 @@ function validateForm(data: FormData): FormErrors {
 
   if (!data.message.trim()) {
     errors.message = 'Please tell us about your project'
-  } else if (data.message.trim().length < 20) {
-    errors.message = 'Please provide more details (at least 20 characters)'
+  } else if (data.message.trim().length < 10) {
+    errors.message = 'Please provide a few more details (at least 10 characters)'
   }
 
   return errors
@@ -198,9 +198,9 @@ ${formData.message}
   if (isSubmitted) {
     return (
       <div className="text-center py-12" role="status" aria-live="polite">
-        <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-green-100 flex items-center justify-center">
+        <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-green-400 to-green-500 flex items-center justify-center shadow-lg">
           <svg
-            className="w-8 h-8 text-green-500"
+            className="w-10 h-10 text-white"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -209,24 +209,37 @@ ${formData.message}
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth={2}
+              strokeWidth={2.5}
               d="M5 13l4 4L19 7"
             />
           </svg>
         </div>
-        <h3 className="text-xl font-bold text-navy-900 mb-2">
-          Message Received!
+        <h3 className="text-2xl font-bold text-navy-900 mb-3">
+          We got your message!
         </h3>
-        <p className="text-slate-600 mb-6">
-          Thanks for reaching out. We'll get back to you within 24 hours to schedule your consultation.
+        <p className="text-lg text-slate-600 mb-2">
+          We'll respond within 24 hours to schedule your free consultation.
         </p>
-        <button
-          type="button"
-          onClick={() => setIsSubmitted(false)}
-          className="text-electric-500 font-medium hover:text-electric-600 focus:outline-none focus:ring-2 focus:ring-electric-500 focus:ring-offset-2 rounded px-2 py-1"
-        >
-          Send another message
-        </button>
+        <p className="text-sm text-slate-500 mb-8">
+          Check your email (including spam) for our reply.
+        </p>
+        <div className="space-y-3">
+          <p className="text-sm font-medium text-navy-900">What happens next?</p>
+          <div className="inline-flex flex-col text-left text-sm text-slate-600 space-y-2">
+            <div className="flex items-start gap-2">
+              <span className="text-electric-500 font-bold">1.</span>
+              <span>We'll review your project details</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-electric-500 font-bold">2.</span>
+              <span>Schedule a 30-minute consultation call</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-electric-500 font-bold">3.</span>
+              <span>Get a custom proposal tailored to your needs</span>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
@@ -453,7 +466,7 @@ ${formData.message}
         type="submit"
         disabled={isSubmitting}
         className={clsx(
-          'w-full btn-primary',
+          'w-full btn-primary text-lg py-4 font-bold group',
           isSubmitting && 'opacity-70 cursor-not-allowed'
         )}
       >
@@ -475,10 +488,15 @@ ${formData.message}
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
               />
             </svg>
-            <span>Sending...</span>
+            <span>Sending Your Message...</span>
           </span>
         ) : (
-          'Send Message'
+          <span className="flex items-center justify-center gap-2">
+            Get My Free Consultation
+            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </span>
         )}
       </button>
 
