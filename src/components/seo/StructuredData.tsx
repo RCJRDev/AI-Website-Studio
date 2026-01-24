@@ -11,7 +11,7 @@ export function OrganizationSchema(_props: SchemaProps) {
     '@type': 'Organization',
     name: 'Buildwise',
     url: baseUrl,
-    logo: `${baseUrl}/logonew.svg`,
+    logo: `${baseUrl}/newlogo1.svg`,
     description: 'Custom websites for small businesses with ongoing expert support.',
     foundingDate: '2024',
     contactPoint: {
@@ -38,7 +38,7 @@ export function ProfessionalServiceSchema(_props: SchemaProps) {
     '@type': 'ProfessionalService',
     name: 'Buildwise',
     url: baseUrl,
-    logo: `${baseUrl}/logonew.svg`,
+    logo: `${baseUrl}/newlogo1.svg`,
     image: `${baseUrl}/og-image.png`,
     description: 'Professional website design and development services for small businesses. Custom-built websites with ongoing support.',
     email: 'buildwisedev@gmail.com',

@@ -10,7 +10,7 @@ export default function Logo({ className, variant = 'dark' }: LogoProps) {
   return (
     <div className={clsx('flex items-center', className)}>
       <Image
-        src="/logonew.svg"
+        src="/newlogo1.svg"
         alt="Buildwise"
         width={240}
         height={72}
