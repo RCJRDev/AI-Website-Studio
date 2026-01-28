@@ -47,8 +47,8 @@
   <rect x="22" y="70" width="30" height="3.5" rx="1.75" fill="white" opacity="0.6"/>
   <rect x="56" y="70" width="2.5" height="3.5" rx="1.25" fill="#f97316" opacity="0.95"/>
 
-  <!-- Wordmark -->
+  <!-- Wordmark (light variant for dark backgrounds) -->
   <text x="108" y="62" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="40" font-weight="800" letter-spacing="-0.5">
-    <tspan fill="#0f172a">Build</tspan><tspan fill="#2563eb">wise</tspan>
+    <tspan fill="#ffffff">Build</tspan><tspan fill="#60a5fa">wise</tspan>
   </text>
 </svg>

@@ -1,1 +1,49 @@
-<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><rect x="96" y="360" width="320" height="20" fill="#2f6fa5" /><polygon points="140,360 140,260 220,300 220,360" fill="#4b5563" /><polygon points="230,360 230,220 300,180 300,360" fill="#2f6fa5" /><polygon points="310,360 310,240 380,280 380,360" fill="#f97316" /></svg>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="32" y1="32" x2="480" y2="480" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <clipPath id="c">
+      <rect x="32" y="32" width="448" height="448" rx="112"/>
+    </clipPath>
+  </defs>
+
+  <!-- Shadow -->
+  <rect x="38" y="42" width="448" height="448" rx="112" fill="#1d4ed8" opacity="0.12"/>
+
+  <!-- Background -->
+  <rect x="32" y="32" width="448" height="448" rx="112" fill="url(#g)"/>
+
+  <!-- Shine -->
+  <rect x="32" y="32" width="448" height="224" fill="white" opacity="0.06" clip-path="url(#c)"/>
+
+  <!-- Browser dots -->
+  <circle cx="128" cy="128" r="16" fill="white" opacity="0.4"/>
+  <circle cx="176" cy="128" r="16" fill="white" opacity="0.4"/>
+  <circle cx="224" cy="128" r="16" fill="white" opacity="0.4"/>
+
+  <!-- URL bar hint -->
+  <rect x="264" cy="128" y="114" width="128" height="28" rx="14" fill="white" opacity="0.15"/>
+
+  <!-- Divider -->
+  <line x1="88" y1="172" x2="424" y2="172" stroke="white" stroke-width="3" opacity="0.15"/>
+
+  <!-- Code lines -->
+  <!-- Line 1: keyword + value -->
+  <rect x="112" y="204" width="72" height="22" rx="11" fill="white" opacity="0.5"/>
+  <rect x="200" y="204" width="140" height="22" rx="11" fill="white" opacity="0.7"/>
+
+  <!-- Line 2: indented full statement -->
+  <rect x="152" y="248" width="204" height="22" rx="11" fill="white" opacity="0.8"/>
+
+  <!-- Line 3: indented shorter -->
+  <rect x="152" y="292" width="132" height="22" rx="11" fill="white" opacity="0.7"/>
+
+  <!-- Line 4: closing bracket -->
+  <rect x="112" y="336" width="56" height="22" rx="11" fill="white" opacity="0.4"/>
+
+  <!-- Line 5: new statement + cursor -->
+  <rect x="112" y="380" width="164" height="22" rx="11" fill="white" opacity="0.6"/>
+  <rect x="292" y="380" width="16" height="22" rx="8" fill="#f97316" opacity="0.95"/>
+</svg>

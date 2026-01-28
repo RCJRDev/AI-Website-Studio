@@ -166,8 +166,11 @@ export default function ContactForm() {
       // Web3Forms - Simple email delivery
       // API key from environment variable for security
       const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY
-      if (!accessKey) {
-        throw new Error('Form configuration error')
+
+      // Validate access key exists and is a valid UUID format
+      const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+      if (!accessKey || !uuidRegex.test(accessKey)) {
+        throw new Error('Form configuration error. Please contact support.')
       }
 
       const response = await fetch('https://api.web3forms.com/submit', {
