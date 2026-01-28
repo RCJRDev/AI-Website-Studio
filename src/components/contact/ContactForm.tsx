@@ -61,7 +61,6 @@ const timelines = [
 ] as const
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const PHONE_REGEX = /^[\d\s\-+()]{7,}$/
 
 function validateForm(data: FormData): FormErrors {
   const errors: FormErrors = {}

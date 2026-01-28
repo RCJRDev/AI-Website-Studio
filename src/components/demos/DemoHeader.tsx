@@ -35,9 +35,13 @@ export default function DemoHeader({
   const navBg = isDark ? 'bg-stone-900/95' : 'bg-white/90'
   const navBorder = isDark ? 'border-stone-800' : 'border-stone-200/80'
   const textColor = isDark ? 'text-white' : 'text-stone-800'
-  const textHover = accentColor || (isDark ? 'text-amber-400' : 'text-teal-600')
   const activeColor = accentColor || (isDark ? 'text-amber-400' : 'text-teal-600')
+  const hoverColor = accentColor
+    ? `hover:${accentColor}`
+    : isDark ? 'hover:text-amber-400' : 'hover:text-teal-600'
   const buttonBg = accentColor || (isDark ? 'bg-amber-600 hover:bg-amber-500' : 'bg-teal-600 hover:bg-teal-500')
+  const fontStyle = isDark ? 'font-bold tracking-tight' : 'font-light tracking-wide'
+  const roundedStyle = isDark ? 'rounded-lg' : 'rounded-full'
 
   return (
     <nav className={`sticky top-0 z-40 ${navBg} backdrop-blur-md ${textColor} border-b ${navBorder}`}>
@@ -47,7 +51,7 @@ export default function DemoHeader({
             <div className="w-10 h-10 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform">
               {icon}
             </div>
-            <span className={`text-xl font-${isDark ? 'bold' : 'light'} tracking-${isDark ? 'tight' : 'wide'}`}>
+            <span className={`text-xl ${fontStyle}`}>
               {brandName}
             </span>
           </Link>
@@ -58,7 +62,7 @@ export default function DemoHeader({
               <Link
                 key={link.href}
                 href={link.href}
-                className={`${link.href === baseHref ? activeColor : isDark ? 'text-stone-300' : 'text-stone-600'} hover:${textHover} transition-colors font-medium`}
+                className={`${link.href === baseHref ? activeColor : isDark ? 'text-stone-300' : 'text-stone-600'} ${hoverColor} transition-colors font-medium`}
               >
                 {link.label}
               </Link>
@@ -69,7 +73,7 @@ export default function DemoHeader({
             {ctaHref && (
               <Link
                 href={ctaHref}
-                className={`hidden md:inline-flex items-center gap-2 px-5 py-2.5 ${buttonBg} text-white rounded-${isDark ? 'lg' : 'full'} transition-colors font-medium`}
+                className={`hidden md:inline-flex items-center gap-2 px-5 py-2.5 ${buttonBg} text-white ${roundedStyle} transition-colors font-medium`}
               >
                 {ctaText}
               </Link>
@@ -102,7 +106,7 @@ export default function DemoHeader({
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`${link.href === baseHref ? activeColor : isDark ? 'text-stone-300' : 'text-stone-600'} hover:${textHover} transition-colors font-medium`}
+                  className={`${link.href === baseHref ? activeColor : isDark ? 'text-stone-300' : 'text-stone-600'} ${hoverColor} transition-colors font-medium`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.label}
@@ -111,7 +115,7 @@ export default function DemoHeader({
               {ctaHref && (
                 <Link
                   href={ctaHref}
-                  className={`inline-flex items-center justify-center px-5 py-2.5 ${buttonBg} text-white rounded-${isDark ? 'lg' : 'full'} transition-colors font-medium mt-2`}
+                  className={`inline-flex items-center justify-center px-5 py-2.5 ${buttonBg} text-white ${roundedStyle} transition-colors font-medium mt-2`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {ctaText}

@@ -39,6 +39,9 @@ export default function DemoFooter({
   const textColor = isDark ? 'text-white' : 'text-stone-900'
   const mutedColor = isDark ? 'text-stone-400' : 'text-stone-600'
   const borderColor = isDark ? 'border-stone-800' : 'border-stone-200'
+  const hoverColor = isDark ? 'hover:text-white' : 'hover:text-stone-900'
+  const fontWeight = isDark ? 'font-bold' : 'font-light'
+  const sectionFontWeight = isDark ? 'font-semibold' : 'font-medium'
 
   return (
     <footer className={`${bgColor} ${textColor} py-16`}>
@@ -50,7 +53,7 @@ export default function DemoFooter({
               <div className="w-10 h-10 rounded-full flex items-center justify-center">
                 {icon}
               </div>
-              <span className={`text-lg font-${isDark ? 'bold' : 'light'} tracking-wide`}>
+              <span className={`text-lg ${fontWeight} tracking-wide`}>
                 {brandName}
               </span>
             </div>
@@ -62,24 +65,27 @@ export default function DemoFooter({
           {/* Dynamic Sections */}
           {sections.map((section) => (
             <div key={section.title}>
-              <h3 className={`font-${isDark ? 'semibold' : 'medium'} mb-4`}>{section.title}</h3>
+              <h3 className={`${sectionFontWeight} mb-4`}>{section.title}</h3>
               <ul className={`space-y-3 ${mutedColor} text-sm`}>
                 {section.links.map((link) => (
                   <li key={link.label}>
                     {link.href ? (
                       typeof link.href === 'string' && link.href.startsWith('#') ? (
-                        <a href={link.href} className={`hover:${textColor} transition-colors`}>
+                        <a href={link.href} className={`${hoverColor} transition-colors`}>
                           {link.label}
                         </a>
                       ) : (
-                        <Link href={link.href} className={`hover:${textColor} transition-colors`}>
+                        <Link href={link.href} className={`${hoverColor} transition-colors`}>
                           {link.label}
                         </Link>
                       )
                     ) : (
                       <span
-                        className={`hover:${textColor} transition-colors cursor-pointer`}
+                        className={`${hoverColor} transition-colors cursor-pointer`}
+                        role="button"
+                        tabIndex={0}
                         onClick={link.onClick}
+                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') link.onClick?.() }}
                       >
                         {link.label}
                       </span>
@@ -93,7 +99,7 @@ export default function DemoFooter({
           {/* Contact Section (if provided) */}
           {contactInfo && (
             <div>
-              <h3 className={`font-${isDark ? 'semibold' : 'medium'} mb-4`}>Contact</h3>
+              <h3 className={`${sectionFontWeight} mb-4`}>Contact</h3>
               <address className={`space-y-3 ${mutedColor} text-sm not-italic`}>
                 {contactInfo.email && <p>{contactInfo.email}</p>}
                 {contactInfo.phone && <p>{contactInfo.phone}</p>}
@@ -118,8 +124,8 @@ export default function DemoFooter({
             © {new Date().getFullYear()} {brandName}. All rights reserved.
           </p>
           <div className={`flex items-center gap-6 ${mutedColor} text-sm`}>
-            <span className={`hover:${textColor} transition-colors cursor-pointer`}>Privacy Policy</span>
-            <span className={`hover:${textColor} transition-colors cursor-pointer`}>Terms of Service</span>
+            <span className={`${hoverColor} transition-colors`}>Privacy Policy</span>
+            <span className={`${hoverColor} transition-colors`}>Terms of Service</span>
           </div>
         </div>
       </div>

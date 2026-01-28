@@ -56,14 +56,16 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval'",  // Required for Next.js
+              "script-src 'self' 'unsafe-inline'",
               "style-src 'self' 'unsafe-inline'",  // Required for styled-jsx and Tailwind
-              "img-src 'self' data: https:",
+              "img-src 'self' data:",
               "font-src 'self' data:",
               "connect-src 'self' https://api.web3forms.com",
               "frame-ancestors 'none'",
               "base-uri 'self'",
               "form-action 'self' https://api.web3forms.com",
+              "object-src 'none'",
+              "worker-src 'self'",
               "upgrade-insecure-requests",
             ].join('; '),
           },
