@@ -60,7 +60,7 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline'",  // Required for styled-jsx and Tailwind
               "img-src 'self' data: https:",
               "font-src 'self' data:",
-              "connect-src 'self' https://api.web3forms.com https://api.resend.com",
+              "connect-src 'self' https://api.web3forms.com",
               "frame-ancestors 'none'",
               "base-uri 'self'",
               "form-action 'self' https://api.web3forms.com",

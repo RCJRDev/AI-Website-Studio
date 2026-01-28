@@ -1,19 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Resend } from 'resend'
-
-// Initialize Resend with API key (lazy initialization to avoid build errors)
-let resend: Resend | null = null
-
-function getResendClient(): Resend {
-  if (!resend) {
-    const apiKey = process.env.RESEND_API_KEY
-    if (!apiKey) {
-      throw new Error('RESEND_API_KEY is not configured')
-    }
-    resend = new Resend(apiKey)
-  }
-  return resend
-}
 
 // Simple in-memory rate limiting (use Redis in production for scale)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>()
@@ -50,133 +35,6 @@ function sanitizeInput(input: string): string {
     .slice(0, 1000) // Limit length
 }
 
-// HTML escape for safe email content rendering
-function escapeHtml(text: string): string {
-  const htmlEntities: Record<string, string> = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#39;',
-  }
-  return text.replace(/[&<>"']/g, (char) => htmlEntities[char] || char)
-}
-
-function generateEmailHTML(data: {
-  name: string
-  email: string
-  phone: string
-  company: string
-  projectType: string
-  budget: string
-  timeline: string
-  message: string
-  submittedAt: string
-}): string {
-  return `
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Contact Form Submission</title>
-</head>
-<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f5f5f5;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 40px 20px;">
-    <tr>
-      <td align="center">
-        <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          <!-- Header -->
-          <tr>
-            <td style="background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); padding: 40px 30px; text-align: center;">
-              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700;">
-                New Contact Form Submission
-              </h1>
-              <p style="margin: 10px 0 0; color: #93c5fd; font-size: 14px;">
-                Submitted at ${new Date(data.submittedAt).toLocaleString('en-US', {
-                  dateStyle: 'full',
-                  timeStyle: 'short',
-                })}
-              </p>
-            </td>
-          </tr>
-
-          <!-- Content -->
-          <tr>
-            <td style="padding: 40px 30px;">
-              <table width="100%" cellpadding="0" cellspacing="0">
-                ${[
-                  { label: 'Name', value: escapeHtml(data.name), icon: '👤' },
-                  { label: 'Email', value: escapeHtml(data.email), icon: '📧', link: `mailto:${encodeURIComponent(data.email)}` },
-                  data.phone ? { label: 'Phone', value: escapeHtml(data.phone), icon: '📱', link: `tel:${encodeURIComponent(data.phone)}` } : null,
-                  data.company ? { label: 'Company', value: escapeHtml(data.company), icon: '🏢' } : null,
-                  { label: 'Project Type', value: escapeHtml(data.projectType), icon: '📋' },
-                  data.budget ? { label: 'Budget', value: escapeHtml(data.budget), icon: '💰' } : null,
-                  data.timeline ? { label: 'Timeline', value: escapeHtml(data.timeline), icon: '⏰' } : null,
-                ]
-                  .filter(Boolean)
-                  .map(
-                    (field) => `
-                  <tr>
-                    <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;">
-                      <table width="100%" cellpadding="0" cellspacing="0">
-                        <tr>
-                          <td style="width: 140px; vertical-align: top;">
-                            <strong style="color: #475569; font-size: 14px;">
-                              ${field!.icon} ${field!.label}
-                            </strong>
-                          </td>
-                          <td style="vertical-align: top;">
-                            ${
-                              field!.link
-                                ? `<a href="${field!.link}" style="color: #3b82f6; text-decoration: none; font-size: 14px;">${field!.value}</a>`
-                                : `<span style="color: #1e293b; font-size: 14px;">${field!.value}</span>`
-                            }
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                `
-                  )
-                  .join('')}
-
-                <!-- Message -->
-                <tr>
-                  <td style="padding-top: 24px;">
-                    <strong style="color: #475569; font-size: 14px; display: block; margin-bottom: 12px;">
-                      💬 Message
-                    </strong>
-                    <div style="background-color: #f8fafc; border-left: 4px solid #3b82f6; padding: 16px; border-radius: 4px;">
-                      <p style="margin: 0; color: #1e293b; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">${escapeHtml(data.message)}</p>
-                    </div>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-          <!-- Footer -->
-          <tr>
-            <td style="background-color: #f8fafc; padding: 30px; text-align: center; border-top: 1px solid #e5e7eb;">
-              <p style="margin: 0 0 12px; color: #64748b; font-size: 13px;">
-                This email was sent from your Buildwise contact form.
-              </p>
-              <a href="mailto:${encodeURIComponent(data.email)}?subject=Re: Your inquiry about ${encodeURIComponent(data.projectType)}"
-                 style="display: inline-block; padding: 12px 24px; background-color: #3b82f6; color: #ffffff; text-decoration: none; border-radius: 6px; font-size: 14px; font-weight: 600; margin-top: 8px;">
-                Reply to ${escapeHtml(data.name)}
-              </a>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</body>
-</html>
-  `
-}
-
 export async function POST(request: NextRequest) {
   try {
     // Get client IP for rate limiting
@@ -199,7 +57,6 @@ export async function POST(request: NextRequest) {
 
     // Honeypot check - if filled, silently reject (bot detected)
     if (website) {
-      // Return success to not alert the bot, but don't actually send
       return NextResponse.json(
         { success: true, message: 'Thank you for your message!' },
         { status: 200 }
@@ -243,26 +100,6 @@ export async function POST(request: NextRequest) {
       timeline: timeline ? sanitizeInput(timeline) : '',
       message: sanitizeInput(message),
       submittedAt: new Date().toISOString(),
-    }
-
-    // Send email via Resend
-    const client = getResendClient()
-    const emailResult = await client.emails.send({
-      from: process.env.CONTACT_EMAIL_FROM || 'Buildwise Contact <onboarding@resend.dev>',
-      to: process.env.CONTACT_EMAIL_TO || 'buildwisedev@gmail.com',
-      replyTo: sanitizedData.email,
-      subject: `New Contact: ${sanitizedData.name} - ${sanitizedData.projectType}`,
-      html: generateEmailHTML(sanitizedData),
-    })
-
-    // Check if email was sent successfully
-    if (emailResult.error) {
-      // Log error details for debugging (only visible in Vercel logs, not to user)
-      console.error('Resend error:', emailResult.error)
-      return NextResponse.json(
-        { error: 'Failed to send email. Please try again or contact us directly.' },
-        { status: 500 }
-      )
     }
 
     return NextResponse.json(
