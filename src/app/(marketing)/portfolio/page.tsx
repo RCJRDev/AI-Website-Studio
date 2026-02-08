@@ -15,40 +15,42 @@ export const metadata: Metadata = {
 
 const projects = [
   {
-    id: 'bloom-floral',
-    title: 'Bloom Floral Design',
-    subtitle: 'Boutique Florist & Event Styling',
-    category: 'E-commerce',
+    id: 'northstar-vocational',
+    title: 'NorthStar Vocational & Life Services',
+    subtitle: 'Life Coaching & Vocational Counseling',
+    category: 'Professional Services',
     type: 'Client Project',
-    description: 'A stunning online storefront that captures the artistry of this boutique florist. The site features an elegant product catalog, real-time inventory management, and a custom booking system for events and consultations.',
-    challenge: 'Bloom needed to showcase their beautiful arrangements while managing a complex inventory of seasonal flowers and accepting both online orders and event bookings.',
-    solution: 'We created a visually-driven e-commerce experience with high-quality image galleries, an intuitive ordering system, and a separate booking flow for wedding and event consultations. The backend integrates with their existing inventory management.',
+    url: 'https://www.northstarvocationallifecoach.online',
+    description: 'A professional, bilingual website for a life coaching and vocational counseling practice in Connecticut with 22+ years of experience serving individuals seeking clarity, career guidance, and personal growth.',
+    challenge: 'NorthStar needed a professional online presence that conveyed credibility, showcased their bilingual services (English/Spanish), and made it easy for prospective clients to schedule consultations.',
+    solution: 'We built an accessible, mobile-first website with integrated Cal.com scheduling, Web3Forms contact handling, structured data for local SEO, and WCAG-compliant design. The site emphasizes the practitioner\'s extensive experience and warm, professional approach.',
     results: [
-      '156% increase in online orders',
-      '40% reduction in phone inquiries',
-      '85% of event bookings now come through the website',
+      'Professional online presence established for the first time',
+      'Online consultation booking reduces phone tag',
+      'Bilingual content reaches broader audience in Connecticut',
     ],
-    techStack: ['Next.js', 'Stripe', 'Sanity CMS', 'Vercel'],
-    tags: ['E-commerce', 'Custom Design', 'Booking System', 'CMS'],
-    color: 'from-pink-500 to-rose-500',
+    techStack: ['HTML/CSS/JS', 'Cal.com', 'Web3Forms', 'Vercel'],
+    tags: ['Bilingual', 'Accessibility', 'Scheduling', 'Local SEO'],
+    color: 'from-blue-600 to-indigo-500',
   },
   {
-    id: 'summit-fitness',
-    title: 'Summit Fitness Studio',
-    subtitle: 'Boutique Gym & Personal Training',
+    id: 'gentle-path-counseling',
+    title: 'Gentle Path Counseling',
+    subtitle: 'Compassionate Counseling Services',
     category: 'Service Business',
     type: 'Client Project',
-    description: 'A high-energy website for a boutique fitness studio that needed to attract new members, showcase their trainers, and streamline class bookings.',
-    challenge: 'Summit was losing potential members due to an outdated website that didn\'t reflect their modern facility or make it easy to sign up for classes.',
-    solution: 'We designed a dynamic, mobile-first website with integrated class scheduling, membership signup flows, and detailed trainer profiles. The site emphasizes the studio\'s community atmosphere and results-driven approach.',
+    url: 'https://suki-handley.vercel.app',
+    description: 'A warm, inviting therapy practice website designed to reduce the barrier to seeking help. Features evidence-based branding, trauma-informed copy, and a calming user experience that reflects the therapeutic relationship.',
+    challenge: 'Gentle Path Counseling needed a website that felt approachable and safe for potential clients who may be hesitant about starting therapy, while maintaining professional credibility and optimizing for local search.',
+    solution: 'We created a Next.js site with a carefully crafted sage-green and terracotta color palette evoking nature and warmth. The copy uses trauma-informed language, validates the courage it takes to seek help, and gently guides visitors toward booking a consultation.',
     results: [
-      '200% increase in online class bookings',
-      '45% of new memberships now start online',
-      '60% reduction in front desk phone calls',
+      'Professional therapy practice website launched',
+      'SEO-optimized for local therapy searches',
+      'Config-driven content for easy updates',
     ],
-    techStack: ['Next.js', 'Mindbody API', 'Tailwind CSS', 'Vercel'],
-    tags: ['Scheduling', 'Memberships', 'Mobile-First', 'API Integration'],
-    color: 'from-orange-500 to-amber-500',
+    techStack: ['Next.js', 'Tailwind CSS', 'TypeScript', 'Vercel'],
+    tags: ['Healthcare', 'SEO Optimized', 'Mobile-First', 'Accessibility'],
+    color: 'from-emerald-600 to-teal-500',
   },
   {
     id: 'bright-path',
@@ -143,8 +145,13 @@ export default function PortfolioPage() {
                 }`}>
                   {/* Image Placeholder */}
                   <div className={`order-1 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
-                    {project.type === 'Concept Project' ? (
-                      <Link href={`/demos/${project.id}`} className="block group">
+                    {(project.type === 'Concept Project' || project.url) ? (
+                      <a
+                        href={project.url || `/demos/${project.id}`}
+                        target={project.url ? '_blank' : undefined}
+                        rel={project.url ? 'noopener noreferrer' : undefined}
+                        className="block group"
+                      >
                         <div className={`aspect-[4/3] rounded-2xl bg-gradient-to-br ${project.color} relative overflow-hidden transition-transform group-hover:scale-[1.02]`}>
                           <div className="absolute inset-0 flex items-center justify-center">
                             <div className="text-center text-white">
@@ -154,14 +161,14 @@ export default function PortfolioPage() {
                                 </svg>
                               </div>
                               <p className="text-lg font-medium">{project.title}</p>
-                              <p className="text-sm text-white/80 mt-1">Click to view demo</p>
+                              <p className="text-sm text-white/80 mt-1">{project.url ? 'Visit live site' : 'Click to view demo'}</p>
                             </div>
                           </div>
                           <div className="absolute top-4 right-4 px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm text-white font-medium">
-                            Live Demo
+                            {project.url ? 'Live Site' : 'Live Demo'}
                           </div>
                         </div>
-                      </Link>
+                      </a>
                     ) : (
                       <div className={`aspect-[4/3] rounded-2xl bg-gradient-to-br ${project.color} relative overflow-hidden`}>
                         <div className="absolute inset-0 flex items-center justify-center">
@@ -251,17 +258,19 @@ export default function PortfolioPage() {
                       {project.techStack.join(' • ')}
                     </div>
 
-                    {project.type === 'Concept Project' && (
+                    {(project.type === 'Concept Project' || project.url) && (
                       <div className="mt-6 pt-6 border-t border-slate-200">
-                        <Link
-                          href={`/demos/${project.id}`}
+                        <a
+                          href={project.url || `/demos/${project.id}`}
+                          target={project.url ? '_blank' : undefined}
+                          rel={project.url ? 'noopener noreferrer' : undefined}
                           className="inline-flex items-center gap-2 px-6 py-3 bg-electric-500 text-white rounded-lg hover:bg-electric-600 transition-colors font-medium"
                         >
-                          View Live Demo
+                          {project.url ? 'Visit Website' : 'View Live Demo'}
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                           </svg>
-                        </Link>
+                        </a>
                       </div>
                     )}
                   </div>

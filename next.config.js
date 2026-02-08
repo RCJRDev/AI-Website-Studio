@@ -56,7 +56,7 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval'",  // unsafe-eval required by Next.js webpack runtime for hydration
               "style-src 'self' 'unsafe-inline'",  // Required for styled-jsx and Tailwind
               "img-src 'self' data:",
               "font-src 'self' data:",

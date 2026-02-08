@@ -7,18 +7,18 @@ import AnimatedElement from '@/components/ui/AnimatedElement'
 
 const projects = [
   {
-    title: 'Bloom Floral Design',
-    category: 'E-commerce',
-    description: 'A stunning online storefront for a boutique florist, featuring real-time inventory and local delivery scheduling.',
-    image: '/portfolio/bloom-floral.jpg',
-    tags: ['E-commerce', 'Custom Design', 'Booking System'],
+    title: 'NorthStar Vocational & Life Services',
+    category: 'Professional Services',
+    description: 'A bilingual website for a life coaching and vocational counseling practice in Connecticut, featuring online scheduling and accessibility-first design.',
+    image: '/portfolio/northstar-vocational.jpg',
+    tags: ['Bilingual', 'Accessibility', 'Scheduling'],
   },
   {
-    title: 'Summit Fitness Studio',
+    title: 'Gentle Path Counseling',
     category: 'Service Business',
-    description: 'A high-converting website with class scheduling, membership signups, and trainer profiles.',
-    image: '/portfolio/summit-fitness.jpg',
-    tags: ['Scheduling', 'Memberships', 'Mobile-First'],
+    description: 'A warm, professional therapy practice website with evidence-based branding, SEO optimization, and a calming user experience.',
+    image: '/portfolio/gentle-path.jpg',
+    tags: ['Healthcare', 'SEO Optimized', 'Mobile-First'],
   },
   {
     title: 'Bright Path Consulting',

@@ -6,20 +6,20 @@ import AnimatedElement from '@/components/ui/AnimatedElement'
 
 const testimonials = [
   {
-    quote: "Our inquiries doubled within the first month. Buildwise built us a site that actually converts visitors into paying customers.",
-    author: 'Sarah Chen',
-    role: 'Owner',
-    company: 'Bloom Floral Design',
-    result: '2x more inquiries',
-    image: '/testimonials/sarah.jpg',
+    quote: "Buildwise gave my practice the professional presence it deserved. The bilingual design and online scheduling have made it so much easier for clients to connect with me.",
+    author: 'NorthStar Vocational',
+    role: 'Life Coach & Vocational Counselor',
+    company: 'NorthStar Vocational & Life Services',
+    result: 'Professional launch',
+    image: '/testimonials/northstar.jpg',
   },
   {
-    quote: "We went from an outdated site that embarrassed us to one we proudly share with everyone. The whole process was smooth, and they hit every deadline.",
-    author: 'Marcus Williams',
-    role: 'Founder',
-    company: 'Summit Fitness Studio',
+    quote: "The website perfectly captures the warm, safe feeling I want my clients to experience. The process was smooth, and they understood the sensitivity of therapy branding.",
+    author: 'Gentle Path',
+    role: 'Therapist',
+    company: 'Gentle Path Counseling',
     result: 'Launched in 3 weeks',
-    image: '/testimonials/marcus.jpg',
+    image: '/testimonials/gentle-path.jpg',
   },
   {
     quote: "The monthly support is worth every penny. Any time we need a change or have a question, they respond quickly. It is like having a web team on staff.",

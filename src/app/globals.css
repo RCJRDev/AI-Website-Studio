@@ -112,13 +112,21 @@
   }
 
   /* Performance-optimized scroll animations using CSS instead of JS */
+  /* Content starts visible by default (safe fallback if JS fails) */
   .scroll-animate {
-    opacity: 0;
-    transform: translateY(30px);
+    opacity: 1;
+    transform: translateY(0);
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
   }
 
-  .scroll-animate.is-visible {
+  /* Only hide content for animation when JS has confirmed hydration */
+  .js-ready .scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  /* Reveal when IntersectionObserver fires */
+  .js-ready .scroll-animate.is-visible {
     opacity: 1;
     transform: translateY(0);
   }

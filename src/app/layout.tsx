@@ -97,6 +97,9 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className="font-sans antialiased">
+        <noscript>
+          <style>{`.scroll-animate { opacity: 1 !important; transform: none !important; }`}</style>
+        </noscript>
         {children}
       </body>
     </html>

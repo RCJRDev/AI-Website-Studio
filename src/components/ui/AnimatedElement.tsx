@@ -21,6 +21,9 @@ const delayClasses: Record<number, string> = {
   0.5: 'stagger-delay-5',
 }
 
+// Track whether we've already marked the document as JS-ready
+let jsReadyApplied = false
+
 function AnimatedElement({
   children,
   className,
@@ -30,6 +33,14 @@ function AnimatedElement({
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    // Mark the document as JS-ready on first mount.
+    // This enables the scroll-animate opacity:0 styles.
+    // Without this class, content stays visible (safe fallback).
+    if (!jsReadyApplied) {
+      document.documentElement.classList.add('js-ready')
+      jsReadyApplied = true
+    }
+
     const element = ref.current
     if (!element) return
 
