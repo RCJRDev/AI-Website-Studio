@@ -3,10 +3,10 @@ import Logo from '@/components/ui/Logo'
 
 const footerNavigation = {
   services: [
-    { name: 'Starter Website', href: '/pricing#starter' },
-    { name: 'Growth Website', href: '/pricing#growth' },
-    { name: 'Pro Website', href: '/pricing#pro' },
-    { name: 'Monthly Plans', href: '/pricing#monthly' },
+    { name: 'Landing Page', href: '/pricing#landing-page' },
+    { name: 'Standard Website', href: '/pricing#standard' },
+    { name: 'Enterprise Website', href: '/pricing#enterprise' },
+    { name: 'Care Plan', href: '/pricing#monthly' },
   ],
   company: [
     { name: 'About', href: '/about' },

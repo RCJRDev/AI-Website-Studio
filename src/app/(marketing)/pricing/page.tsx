@@ -6,7 +6,7 @@ import AnimatedElement from '@/components/ui/AnimatedElement'
 
 export const metadata: Metadata = {
   title: 'Pricing',
-  description: 'Simple, transparent pricing for custom website design. Starter $500, Growth $1,000, Pro $2,000. One price per tier, no surprises.',
+  description: 'Simple, transparent pricing for custom website design. Landing Page $250, Standard $500, Enterprise $1,500. One monthly plan at $29/month. No surprises.',
   openGraph: {
     title: 'Pricing | Buildwise',
     description: 'Simple, transparent pricing for custom website design. One price per tier, no surprises.',
@@ -15,57 +15,53 @@ export const metadata: Metadata = {
 
 const buildPackages = [
   {
-    id: 'starter',
-    name: 'Starter',
-    price: '$500',
-    description: 'Look professional online and start getting found by customers searching for what you offer.',
-    bestFor: 'Freelancers, solo professionals, new businesses',
+    id: 'landing-page',
+    name: 'Landing Page',
+    price: '$250',
+    description: 'Get online fast with a focused, high-converting single page that showcases your business.',
+    bestFor: 'New businesses, freelancers, product launches, marketing campaigns',
     includes: [
-      'Up to 5 pages',
-      'Mobile-responsive design',
+      'Single page design',
+      'Mobile-responsive layout',
       'Contact form',
       'Basic SEO setup',
       'Social media links',
+      '1 round of revisions',
+    ],
+    timeline: '~1 week',
+  },
+  {
+    id: 'standard',
+    name: 'Standard',
+    price: '$500',
+    description: 'A professional multi-page website that establishes your brand and drives leads.',
+    bestFor: 'Small businesses, consultants, local services, personal brands',
+    includes: [
+      'Up to 8 pages',
+      'Mobile-responsive design',
+      'Contact form',
+      'Advanced SEO setup',
       'Google Analytics integration',
+      'Social media links',
+      'Blog or news section',
       '2 rounds of revisions',
     ],
+    popular: true,
     timeline: '1-2 weeks',
   },
   {
-    id: 'growth',
-    name: 'Growth',
-    price: '$1,000',
-    description: 'Turn your website into a lead generation machine that captures visitors and converts them into customers.',
-    bestFor: 'Growing businesses, local services, consultants',
-    includes: [
-      'Up to 10 pages',
-      'Custom design elements',
-      'Blog or news section',
-      'Advanced SEO optimization',
-      'Email capture & newsletter signup',
-      'CRM integration',
-      'Lead generation forms',
-      'Analytics dashboard',
-      '3 rounds of revisions',
-    ],
-    popular: true,
-    timeline: '2-3 weeks',
-  },
-  {
-    id: 'pro',
-    name: 'Pro',
-    price: '$2,000',
-    description: 'A complete business platform that sells products, takes bookings, or handles whatever your business needs.',
-    bestFor: 'Established businesses, e-commerce, service companies',
+    id: 'enterprise',
+    name: 'Enterprise',
+    price: '$1,500',
+    description: 'A full-featured business platform with the advanced functionality your growing business demands.',
+    bestFor: 'Established businesses, e-commerce stores, service companies with complex needs',
     includes: [
       'Unlimited pages',
-      'E-commerce functionality',
-      'Custom features & integrations',
-      'Advanced animations',
-      'Membership/booking systems',
-      'Multi-language support',
-      'Premium third-party integrations',
-      'Advanced analytics & tracking',
+      'Online booking system',
+      'E-commerce & online ordering',
+      'Customer accounts & portals',
+      'Custom integrations',
+      'Advanced SEO & analytics',
       'Priority development',
       'Unlimited revisions',
     ],
@@ -73,59 +69,22 @@ const buildPackages = [
   },
 ]
 
-const monthlyPlans = [
-  {
-    id: 'basic',
-    name: 'Basic',
-    price: '$19',
-    description: 'Reliable hosting and essential maintenance to keep your site running smoothly.',
-    bestFor: 'Starter package clients, low-traffic sites',
-    includes: [
-      'Managed hosting',
-      'SSL certificate',
-      'Weekly backups',
-      'Security monitoring',
-      'Software updates',
-      'Up to 30 min of content updates/month',
-      'Email support (48h response)',
-    ],
-  },
-  {
-    id: 'standard',
-    name: 'Standard',
-    price: '$49',
-    description: 'Proactive care and faster support for businesses that depend on their website.',
-    bestFor: 'Growth package clients, active websites',
-    includes: [
-      'Everything in Basic, plus:',
-      'Daily backups',
-      'Performance monitoring',
-      'Up to 1 hour of updates/month',
-      'Priority email support (24h response)',
-      'Monthly performance report',
-      'Basic SEO monitoring',
-    ],
-    popular: true,
-  },
-  {
-    id: 'premium',
-    name: 'Premium',
-    price: '$99',
-    description: 'Dedicated attention for high-traffic sites and e-commerce stores.',
-    bestFor: 'Pro package clients, e-commerce, high-traffic',
-    includes: [
-      'Everything in Standard, plus:',
-      'Real-time backups',
-      'Advanced security features',
-      'Up to 3 hours of updates/month',
-      'Same-day support response',
-      'Phone support available',
-      'Quarterly strategy call',
-      'Advanced analytics & SEO reports',
-      'Uptime guarantee (99.9%)',
-    ],
-  },
-]
+const monthlyPlan = {
+  id: 'care-plan',
+  name: 'Care Plan',
+  price: '$29',
+  description: 'Everything you need to keep your site fast, secure, and up to date — one simple price for every client.',
+  includes: [
+    'Managed hosting',
+    'SSL certificate',
+    'Daily backups',
+    'Security monitoring',
+    'Software updates',
+    'Up to 30 min of content updates/month',
+    'Email support (48h response)',
+    'Monthly performance report',
+  ],
+}
 
 export default function PricingPage() {
   return (
@@ -200,7 +159,7 @@ export default function PricingPage() {
               </div>
               <div className="mt-8 p-4 bg-electric-50 rounded-lg border border-electric-200">
                 <p className="text-sm text-electric-800 text-center">
-                  <strong>Example:</strong> A Growth website ($1,000) + Standard plan ($49/month) = $1,000 upfront + $49/month ongoing
+                  <strong>Example:</strong> A Standard website ($500) + Care Plan ($29/month) = $500 upfront + $29/month ongoing
                 </p>
               </div>
             </div>
@@ -287,7 +246,7 @@ export default function PricingPage() {
                   }`}
                 >
                   <span className="flex items-center justify-center gap-2">
-                    {pkg.popular ? 'Choose Growth - Free Consultation' : `Choose ${pkg.name} - Free Consultation`}
+                    {`Choose ${pkg.name} - Free Consultation`}
                     <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
@@ -299,87 +258,68 @@ export default function PricingPage() {
         </div>
       </Section>
 
-      {/* Monthly Plans */}
+      {/* Monthly Plan */}
       <Section background="gray" id="monthly">
         <SectionHeader
-          eyebrow="Monthly Service Plans"
+          eyebrow="Monthly Care Plan"
           title="Keep your site fast, secure & updated"
-          description="Required for all websites. We handle the technical stuff so you can focus on your business."
+          description="Required for all websites. One simple price — no tiers, no confusion. We handle the technical stuff so you can focus on your business."
         />
 
-        <div className="mt-16 grid lg:grid-cols-3 gap-8">
-          {monthlyPlans.map((plan, index) => (
-            <AnimatedElement key={plan.id} delay={index * 0.1}>
-              <div
-                id={`plan-${plan.id}`}
-                className={`relative h-full flex flex-col p-8 rounded-2xl border-2 transition-shadow hover:shadow-xl bg-white ${
-                  plan.popular
-                    ? 'border-electric-500 shadow-lg'
-                    : 'border-slate-200'
-                }`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="inline-flex items-center px-4 py-1 rounded-full text-sm font-semibold bg-electric-500 text-white">
-                      Recommended
-                    </span>
-                  </div>
-                )}
-
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-navy-900">{plan.name}</h3>
-                  <div className="mt-2">
-                    <span className="text-3xl font-bold text-navy-900">{plan.price}</span>
-                    <span className="text-slate-500">/month</span>
-                  </div>
-                </div>
-
-                <p className="text-slate-600 mb-4">{plan.description}</p>
-
-                <div className="mb-6 p-3 bg-slate-50 rounded-lg">
-                  <p className="text-sm">
-                    <span className="font-medium text-navy-900">Best for:</span>{' '}
-                    <span className="text-slate-600">{plan.bestFor}</span>
-                  </p>
-                </div>
-
-                <ul className="flex-grow space-y-3 mb-8">
-                  {plan.includes.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm">
-                      <svg
-                        className="w-4 h-4 text-electric-500 flex-shrink-0 mt-0.5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span className="text-slate-700">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  href="/contact"
-                  className={`w-full text-center py-3 px-6 rounded-lg font-semibold transition-all group ${
-                    plan.popular
-                      ? 'bg-electric-500 text-white hover:bg-electric-600 hover:shadow-xl shadow-lg shadow-electric-500/30'
-                      : 'bg-navy-900 text-white hover:bg-navy-800 hover:shadow-lg'
-                  }`}
-                >
-                  <span className="flex items-center justify-center gap-2">
-                    Get Started
-                    <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                  </span>
-                </Link>
+        <div className="mt-16 max-w-lg mx-auto">
+          <AnimatedElement>
+            <div
+              id={`plan-${monthlyPlan.id}`}
+              className="relative flex flex-col p-8 rounded-2xl border-2 border-electric-500 shadow-lg bg-white"
+            >
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                <span className="inline-flex items-center px-4 py-1 rounded-full text-sm font-semibold bg-electric-500 text-white">
+                  Included with every website
+                </span>
               </div>
-            </AnimatedElement>
-          ))}
+
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-bold text-navy-900">{monthlyPlan.name}</h3>
+                <div className="mt-2">
+                  <span className="text-4xl font-bold text-navy-900">{monthlyPlan.price}</span>
+                  <span className="text-slate-500">/month</span>
+                </div>
+              </div>
+
+              <p className="text-slate-600 mb-6 text-center">{monthlyPlan.description}</p>
+
+              <ul className="flex-grow space-y-3 mb-8">
+                {monthlyPlan.includes.map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-sm">
+                    <svg
+                      className="w-4 h-4 text-electric-500 flex-shrink-0 mt-0.5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <span className="text-slate-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <Link
+                href="/contact"
+                className="w-full text-center py-3 px-6 rounded-lg font-semibold transition-all group bg-electric-500 text-white hover:bg-electric-600 hover:shadow-xl shadow-lg shadow-electric-500/30"
+              >
+                <span className="flex items-center justify-center gap-2">
+                  Get Started
+                  <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </span>
+              </Link>
+            </div>
+          </AnimatedElement>
         </div>
       </Section>
 

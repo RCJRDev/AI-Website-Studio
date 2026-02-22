@@ -7,46 +7,46 @@ import AnimatedElement from '@/components/ui/AnimatedElement'
 
 const services = [
   {
-    name: 'Starter',
-    price: '$500',
-    description: 'A polished, professional website that gets your business online.',
+    name: 'Landing Page',
+    price: '$250',
+    description: 'A focused, high-converting single page that gets your business online fast.',
     features: [
-      'Up to 5 pages',
-      'Mobile-responsive design',
+      'Single page design',
+      'Mobile-responsive layout',
       'Contact form',
       'Basic SEO setup',
-      'Social media integration',
+      'Social media links',
     ],
-    href: '/pricing#starter',
+    href: '/pricing#landing-page',
   },
   {
-    name: 'Growth',
-    price: '$1,000',
-    description: 'Built to attract visitors and capture leads for your business.',
+    name: 'Standard',
+    price: '$500',
+    description: 'A professional multi-page website that establishes your brand and drives leads.',
     features: [
-      'Up to 10 pages',
-      'Custom design elements',
+      'Up to 8 pages',
+      'Mobile-responsive design',
+      'Contact form',
+      'Advanced SEO setup',
       'Blog or news section',
-      'Advanced SEO',
       'Analytics integration',
-      'Email capture forms',
     ],
-    href: '/pricing#growth',
+    href: '/pricing#standard',
     popular: true,
   },
   {
-    name: 'Pro',
-    price: '$2,000',
-    description: 'A complete digital platform with advanced features to scale.',
+    name: 'Enterprise',
+    price: '$1,500',
+    description: 'A full-featured platform with booking, ordering, and customer accounts.',
     features: [
       'Unlimited pages',
-      'E-commerce ready',
-      'Custom functionality',
-      'Premium integrations',
+      'Booking & ordering systems',
+      'Customer accounts & portals',
+      'Custom integrations',
       'Advanced analytics',
       'Priority development',
     ],
-    href: '/pricing#pro',
+    href: '/pricing#enterprise',
   },
 ]
 
@@ -125,7 +125,7 @@ export default function ServicesOverview() {
 
       <div className="mt-12 text-center">
         <p className="text-slate-700 mb-4">
-          All website builds include a monthly service plan ($19/month) for hosting, security, and support.
+          All website builds include a monthly Care Plan ($29/month) for hosting, security, and support.
         </p>
         <Link
           href="/pricing"

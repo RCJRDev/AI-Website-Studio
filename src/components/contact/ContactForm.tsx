@@ -46,9 +46,9 @@ const projectTypes = [
 
 const budgetRanges = [
   { value: '', label: 'What fits your budget?' },
-  { value: 'starter', label: 'Starter ($500) - Perfect for getting started' },
-  { value: 'growth', label: 'Growth ($1,000) - Most popular choice' },
-  { value: 'pro', label: 'Pro ($2,000) - Full featured solution' },
+  { value: 'landing-page', label: 'Landing Page ($250) - Get online fast' },
+  { value: 'standard', label: 'Standard ($500) - Most popular choice' },
+  { value: 'enterprise', label: 'Enterprise ($1,500) - Full featured solution' },
   { value: 'unsure', label: 'Help me decide (no pressure!)' },
 ] as const
 

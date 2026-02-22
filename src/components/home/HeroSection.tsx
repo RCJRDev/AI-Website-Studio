@@ -74,7 +74,7 @@ export default function HeroSection() {
           {/* Subheading */}
           <p className="mt-6 text-lg sm:text-xl text-slate-200 max-w-2xl mx-auto text-balance leading-relaxed animate-fade-in-up [animation-delay:200ms]">
             Get a professional, custom-designed website in 2-4 weeks.
-            Starting at $500 with ongoing support for just $19/month.
+            Starting at $250 with ongoing support for just $29/month.
           </p>
 
           {/* CTA Buttons */}
