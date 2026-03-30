@@ -1,10 +1,10 @@
 import AnimatedElement from '@/components/ui/AnimatedElement'
 
 const trustStats = [
-  { value: '50+', label: 'Businesses Helped' },
-  { value: '98%', label: 'Would Recommend Us' },
-  { value: '2-4 Wks', label: 'Average Launch Time' },
+  { value: 'From $250', label: 'Fixed Pricing — No Surprises' },
+  { value: '2–4 Wks', label: 'Average Launch Time' },
   { value: '30 Days', label: 'Money-Back Guarantee' },
+  { value: '$29/mo', label: 'Flat Care Plan — No Tiers' },
 ]
 
 const trustBadges = [

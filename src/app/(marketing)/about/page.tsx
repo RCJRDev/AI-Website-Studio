@@ -53,9 +53,9 @@ const values = [
 ]
 
 const stats = [
-  { value: '50+', label: 'Websites Launched' },
-  { value: '98%', label: 'Client Retention' },
-  { value: '4.9', label: 'Average Rating' },
+  { value: 'From $250', label: 'Transparent Pricing' },
+  { value: '2–4 Wks', label: 'Avg. Launch Time' },
+  { value: '$29/mo', label: 'Flat Care Plan' },
   { value: '24h', label: 'Support Response' },
 ]
 

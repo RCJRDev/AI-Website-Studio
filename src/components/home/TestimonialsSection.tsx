@@ -15,19 +15,11 @@ const testimonials = [
   },
   {
     quote: "The website perfectly captures the warm, safe feeling I want my clients to experience. The process was smooth, and they understood the sensitivity of therapy branding.",
-    author: 'Gentle Path',
-    role: 'Therapist',
+    author: 'Gentle Path Counseling',
+    role: 'Therapist & Practice Owner',
     company: 'Gentle Path Counseling',
-    result: 'Launched in 3 weeks',
+    result: 'Launched in weeks',
     image: '/testimonials/gentle-path.jpg',
-  },
-  {
-    quote: "The monthly support is worth every penny. Any time we need a change or have a question, they respond quickly. It is like having a web team on staff.",
-    author: 'Jennifer Park',
-    role: 'Director',
-    company: 'Bright Path Consulting',
-    result: 'Always responsive',
-    image: '/testimonials/jennifer.jpg',
   },
 ]
 
@@ -35,9 +27,9 @@ export default function TestimonialsSection() {
   return (
     <Section background="navy">
       <SectionHeader
-        eyebrow="98% Would Recommend Us"
+        eyebrow="Real Clients, Real Results"
         title="Businesses like yours are growing with better websites"
-        description="Join 50+ happy clients who turned their websites into growth engines."
+        description="Every project is built with care, clear communication, and a focus on results that matter to your business."
         dark
       />
 
